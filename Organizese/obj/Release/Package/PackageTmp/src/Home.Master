@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="Organizese.src.Home" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+     <!-- Styles CSS -->
+    <link href="styles/style.css" rel="stylesheet" />
+
+
+    <title>Organize-se!</title>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light navColor">
+        <asp:Image ID="imgLogoNav" runat="server" src="img/imgLogo.png" class="imgNav" />
+        &nbsp    
+        <a class="navbar-brand linksNav" href="#"><span class="linksNav">Organize-se</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="#"><span class="linksNav">Home</span></a>
+                </li>
+                <!--
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="linksNav">Blog</span></a>
+                </li>
+                <li class="nav-item dropdown linksNav">
+                    <button type="button" class="btn btn-primary dropdown-toggle navColor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Consultoria
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Empresas</a>
+                        <a class="dropdown-item" href="#">Estudantes</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Demais segmentos...</a>
+                    </div>
+                </li>
+                -->
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="nav-link" href="NewPost.aspx">Área Restrita</a>
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btnSrc" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div style="height: 60px">&nbsp</div>
+    <form id="form1" runat="server">
+        <div style="align-items: center; display: flex; flex-direction: row;  ">
+            <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
