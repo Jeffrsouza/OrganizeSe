@@ -11,7 +11,7 @@
                         <img style="width: 25px; height: 25px;" src="img/calendar.png" />
                         <span runat="server"><%#Eval("DATA")%></span>
                     </div>
-                    <h1 class="title"><%# Eval("TITULO") %></h1>
+                    <h1 style="font-weight: bold;text-align:left;"><%# Eval("TITULO") %></h1>
                    
                      <!--Imagem Linha inteira-->
                     <div>
