@@ -147,10 +147,12 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="src\bootstrap\js\jquery-3.3.1.slim.min.js" />
     <Content Include="src\bootstrap\js\popper.min.js" />
+    <Content Include="src\img\calendar.png" />
     <Content Include="src\img\consultoriaFull.jpg" />
     <Content Include="src\img\imgLogo.png" />
     <Content Include="src\img\indice.jpg" />
     <Content Include="src\index.aspx" />
+    <Content Include="src\js\functions.js" />
     <Content Include="src\NewPost.aspx" />
     <Content Include="src\styles\style.css" />
     <Content Include="Web.config" />
@@ -171,6 +173,7 @@
     <Compile Include="src\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="src\LinkGeral.cs" />
     <Compile Include="src\NewPost.aspx.cs">
       <DependentUpon>NewPost.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

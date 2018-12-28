@@ -14,25 +14,10 @@ namespace Organizese.src
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //MySqlConnection connection = new MySqlConnection("Database = ogolap; Data Source = mysql642.umbler.com; User Id = kant; Password = Ogsql1010");
-            //MySqlCommand comando = new MySqlCommand("SELECT * FROM POSTS", connection);
-            //DataTable tabela = new DataTable();
+            LinkGeral lnk = new LinkGeral();
 
-            //try
-            //{
-            //    connection.Open();
-            //    gdvDados.DataSource = comando.ExecuteReader();
-            //    gdvDados.DataBind();
-            //    lblText.Text = "Try";
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblText.Text = "Try" + ex.Message;
-            //}
-            //finally
-            //{
-            //    connection.Close();
-            //}
+            RptPosts.DataSource = lnk.Posts();
+            RptPosts.DataBind();
         }
     }
 }
