@@ -37,6 +37,7 @@
 .imgFull {
     width: 100%;
     height: auto;
+    border-radius:15px;
 }
 
 .texAndImage {
@@ -65,7 +66,6 @@
 
 .title {
     color: #000;
-    font-size: 30px;
     font-family: Helvetica;
     font-weight: bold;
     text-align: center;
