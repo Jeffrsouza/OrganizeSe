@@ -115,5 +115,9 @@ namespace Organizese.src
             //txtBodyPost.Text = texto + "<a href='coloque o link aqui'>Insira o Texto do Link</a>";
         }
 
+        protected void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
