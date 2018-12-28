@@ -24,7 +24,7 @@
                 <br />
                 <br />
                 <div>
-                    <asp:TextBox ID="txtTitle" runat="server" placeholder="Título" class="form-control" MaxLength="50"></asp:TextBox>
+                    <asp:TextBox ID="txtTitle" runat="server" placeholder="Título" class="form-control" MaxLength="150" OnTextChanged="txtTitle_TextChanged"></asp:TextBox>
                 </div>
                 <br />
                    <div class="textRight">
