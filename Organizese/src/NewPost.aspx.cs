@@ -6,43 +6,112 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net;
+using System.Data;
 
 namespace Organizese.src
 {
     public partial class NewPost : System.Web.UI.Page
     {
+        public static int edit, idPost;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ddlCat.Items.Add("Estudos");
-            ddlCat.Items.Add("Finaças");
-            ddlCat.Items.Add("Empresarial");
-            ddlCat.Items.Add("Pessoal");
+            LinkGeral lnk = new LinkGeral();
+
+            if (!Page.IsPostBack)
+            {
+                ddlCat.Items.Clear();
+                ddlCat.Items.Add("Estudos");
+                ddlCat.Items.Add("Finaças");
+                ddlCat.Items.Add("Empresarial");
+                ddlCat.Items.Add("Pessoal");
+
+
+                string host = Dns.GetHostName();
+                string ipUser = Dns.GetHostAddresses(host)[2].ToString();
+                string ipRede = Dns.GetHostAddresses(host)[3].ToString();
+                lnk.gravaAcesso(host, ipUser, ipRede, DateTime.Now);
+
+                listPosts.Items.Clear();
+                listPosts.DataSource = lnk.LoadPostsByEdit();
+                listPosts.DataTextField = "POST";
+                listPosts.DataValueField = "ID";
+                listPosts.DataBind();
+            }
+
+
         }
 
         protected void btnPost_Click(object sender, EventArgs e)
         {
+
             LinkGeral lnk = new LinkGeral();
-
-            int idPost = lnk.proxid("POSTS");
-
-            #region grava Postagem
-            string titulo = txtTitle.Text;
-            string texto = txtBodyPost.Text.Replace(Environment.NewLine, "<br/>");
-            DateTime data = DateTime.Now;
-            string categoria = ddlCat.SelectedValue;
-
-            lnk.gravarPost(idPost, titulo, texto, data, categoria);
-
-            #endregion
-
-            #region Grava Imagem
-            if (fileUpload.PostedFile != null && !string.IsNullOrEmpty(fileUpload.PostedFile.FileName) && fileUpload.PostedFile.InputStream != null)
+            if (edit == 0)
             {
-                string grvImagem = lnk.gravarImagem(fileUpload, idPost) ? "Imagem Gravada" : "Erro ao Gravar Imagem";
-            }
-            #endregion
+                int idAtual = lnk.proxid("POSTS");
 
-            
+                #region grava Postagem
+                string titulo = txtTitle.Text;
+                string texto = txtBodyPost.Text.Replace(Environment.NewLine, "<br/>");
+                DateTime data = DateTime.Now;
+                string categoria = ddlCat.SelectedValue;
+
+                lnk.gravarPost(idAtual, titulo, texto, data, categoria);
+
+                #endregion
+
+                #region Grava Imagem
+                if (fileUpload.PostedFile != null && !string.IsNullOrEmpty(fileUpload.PostedFile.FileName) && fileUpload.PostedFile.InputStream != null)
+                {
+                    string grvImagem = lnk.gravarImagem(fileUpload, idAtual, true) ? "Imagem Gravada" : "Erro ao Gravar Imagem";
+                }
+                #endregion
+
+                ScriptManager.RegisterClientScriptBlock(
+                   Page,
+                   Page.GetType(),
+                   "Mensagem",
+                   "<script type='text/javascript'> alert('Pedido postado com sucesso!');</script>",
+                   false);
+                Response.Redirect("http://www.organizeseop.com.br/src/Index.aspx");
+            }
+            if (edit == 1 && idPost > 0)
+            {
+                #region Atualiza Postagem
+                string titulo = txtTitle.Text;
+                string texto = txtBodyPost.Text.Replace(Environment.NewLine, "<br/>");
+                DateTime data = DateTime.Now;
+                string categoria = ddlCat.SelectedValue;
+
+                lnk.updatePost(idPost, titulo, texto, data, categoria);
+                #endregion
+
+                #region Grava Imagem
+                if (fileUpload.PostedFile != null && !string.IsNullOrEmpty(fileUpload.PostedFile.FileName) && fileUpload.PostedFile.InputStream != null)
+                {
+                    string grvImagem = lnk.gravarImagem(fileUpload, idPost, false) ? "Imagem Gravada" : "Erro ao Gravar Imagem";
+                }
+                #endregion
+                  ScriptManager.RegisterClientScriptBlock(
+                   Page,
+                   Page.GetType(),
+                   "Mensagem",
+                   "<script type='text/javascript'> alert('Pedido alterado com sucesso!');</script>",
+                   false);
+
+                Response.Redirect("http://www.organizeseop.com.br/src/Index.aspx");
+
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(
+                    Page,
+                    Page.GetType(),
+                    "Mensagem",
+                    "<script type='text/javascript'> alert('Modo de edição: Selecione uma postagem!');</script>",
+                    false);
+            }
+
 
         }
 
@@ -69,7 +138,7 @@ namespace Organizese.src
                     //Response.ContentType = myReader["NOME"].ToString();
                     //Response.BinaryWrite((byte[])myReader["ARQUIVO"]);
 
-                } 
+                }
                 connection.Close();
             }
             catch (Exception ex)
@@ -87,37 +156,34 @@ namespace Organizese.src
 
         protected void btnTeste_Click(object sender, EventArgs e)
         {
-            string texto =  txtBodyPost.Text.Replace(Environment.NewLine, "<br/>");
-            textoTest.Text = texto;
+
         }
 
-        protected void btnNegrito_Click(object sender, EventArgs e)
+        protected void listPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string texto = txtBodyPost.Text;
-            //txtBodyPost.Text = texto + "<b>Insira o Texto em Negrito</b>";
+            LinkGeral lnk = new LinkGeral();
+            idPost = Convert.ToInt32(listPosts.SelectedValue);
+
+            DataTable dt = lnk.LoadPostsByEdit(idPost);
+            foreach (DataRow dr in dt.Rows)
+            {
+                txtTitle.Text = dr["TITULO"].ToString();
+                txtBodyPost.Text = dr["TEXTO"].ToString();
+                imagePost.ImageUrl = "data:image/png;base64," + dr["ARQUIVO"].ToString();
+            }
+
         }
 
-        protected void btnItalico_Click(object sender, EventArgs e)
+        protected void btnLimpar_Click(object sender, EventArgs e)
         {
-            //string texto = txtBodyPost.Text;
-            //txtBodyPost.Text = texto + "<i>Insira o Texto em Italico</i>";
+            txtTitle.Text = txtBodyPost.Text = string.Empty;
+            rblEdit.SelectedValue = "0";
         }
 
-        protected void btnSublinhado_Click(object sender, EventArgs e)
+        protected void rblEdit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string texto = txtBodyPost.Text;
-            //txtBodyPost.Text = texto + "<u>Insira o Texto em Sublinhado</u>";
-        }
-
-        protected void btnLink_Click(object sender, EventArgs e)
-        {
-            //string texto = txtBodyPost.Text;
-            //txtBodyPost.Text = texto + "<a href='coloque o link aqui'>Insira o Texto do Link</a>";
-        }
-
-        protected void txtTitle_TextChanged(object sender, EventArgs e)
-        {
-
+            edit = Convert.ToInt32(rblEdit.SelectedValue);
+            listPosts.Enabled = listPosts.Visible = edit == 1 ? true : false;
         }
     }
 }

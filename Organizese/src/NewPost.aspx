@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewPost.aspx.cs" Inherits="Organizese.src.NewPost" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewPost.aspx.cs" Inherits="Organizese.src.NewPost" validateRequest="false" %>
 
 <!DOCTYPE html>
 
@@ -14,45 +14,59 @@
 
 
     <link href="styles/style.css" rel="stylesheet" />
-    <title>Nova Postagem</title>
+    <title>Postagem</title>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="form-group bodyPosts">
+        <div class="form-group bodyPosts">          
             <div class="bodyNewPost">
-                <p class="title">Nova Postagem</p>
+                <p class="titleNewPost">Postagem</p>
+                <div style="display:flex;flex-direction:row;align-items:center">
+                    <div >
+                     <asp:RadioButtonList ID="rblEdit" runat="server" style="margin:20px" AutoPostBack="true"  OnTextChanged="rblEdit_SelectedIndexChanged">
+                        <asp:ListItem Text="Novo" Value="0" Selected="True" />
+                        <asp:ListItem Text="Editar" Value="1" />
+                    </asp:RadioButtonList>
+                    </div>
+                    &nbsp&nbsp&nbsp&nbsp
+                  <asp:ListBox ID="listPosts" runat="server" AutoPostBack="true" style="max-width:500px; max-height:200px" visible="false" OnSelectedIndexChanged="listPosts_SelectedIndexChanged" ></asp:ListBox>
+                    &nbsp&nbsp&nbsp&nbsp   
+                    <asp:Button ID="btnLimpar" runat="server" Text="Limpar" OnClick="btnLimpar_Click" />                
+                    </div>
                 <br />
                 <br />
                 <div>
-                    <asp:TextBox ID="txtTitle" runat="server" placeholder="Título" class="form-control" MaxLength="150" OnTextChanged="txtTitle_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="txtTitle" runat="server" placeholder="Título" class="form-control" MaxLength="150"></asp:TextBox>
                 </div>
                 <br />
-                   <div class="textRight">
+                <div class="textRight">
                     <asp:DropDownList ID="ddlCat" runat="server" class="btn btn-primary"></asp:DropDownList>
-                    <asp:Button ID="btnNegrito" class="negrito" runat="server" Text="B" OnClick="btnNegrito_Click" />
-                    <asp:Button ID="btnItalico" class="italico" runat="server" Text="I" OnClick="btnItalico_Click"/>
-                    <asp:Button ID="btnSublinhado" class="sublinhado" runat="server" Text="S" OnClick="btnSublinhado_Click" />
-                    <asp:Button ID="btnLink" class="btnLink" runat="server" Text="Link" OnClick="btnLink_Click"/>
+                    <input type="button" id="btnH2" class="negrito" onclick="h2();" value="h2" />
+                    <input type="button" id="btnH3" class="negrito" onclick="h3();" value="h3" />
+                    <input type="button" id="btnNeg" class="negrito" onclick="negrito();" value="B" />
+                    <input type="button" id="btnIta" class="italico" onclick="italico();" value="I" />
+                    <input type="button" id="btnSub" class="sublinhado" onclick="sublinhado();" value="S" />
+                    <input id="textLink" placeholder="Link..." style="width: 200px" type="text" />
+                    <input id="btnLink" class="btnLink" value="Link" type="button" onclick="link()" />
+                    <input id="btnPopUp" class="btnLink" value="PopUp" type="button" onclick="setPopUp()" />
                 </div>
                 <br />
 
                 <div>
-                    <asp:TextBox ID="txtBodyPost" runat="server" placeholder="Postagem..." class="form-control" TextMode="MultiLine" Rows="50" Style="height: 350px"></asp:TextBox>
+                    <asp:TextBox ID="txtBodyPost" runat="server" placeholder="Postagem..." class="form-control" TextMode="MultiLine" Rows="50" Style="height: 300px"></asp:TextBox>
+                    <input id="btnTeste" type="button" value="Testar" onclick="testar();" />
+                    <p id="lblTeste" class="textPre"></p>
                 </div>
                 <br />
-                  <div style="display: flex; flex-direction: column; align-items: center">
-                    <asp:Image ID="imagePost" style="width: 600px; height: 200px; border-color: #1E90FF" runat="server" BorderWidth="2px" />
+                <div style="display: flex; flex-direction: column; align-items: center">
+                    <asp:Image ID="imagePost" class="imgFull" Style="border-color: #1E90FF" runat="server" BorderWidth="2px" />
                     &nbsp
                     &nbsp
-                    <asp:FileUpload ID="fileUpload" runat="server" onchange="fileUpload_DataBinding" style="max-width: 600px; " />
+                    <asp:FileUpload ID="fileUpload" runat="server" onchange="fileUpload_DataBinding" Style="max-width: 600px;" />
                 </div>
                 <br />
                 <div>
                     <asp:Button ID="btnPost" runat="server" Text="Postar" OnClick="btnPost_Click" />
-                     <asp:Button ID="btnTeste" runat="server" Text="Testar" OnClick="btnTeste_Click" />
-                </div>
-                <div>
-                    <asp:Label ID="textoTest" runat="server" style="text-align:left" />
                 </div>
             </div>
         </div>
@@ -65,15 +79,79 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     $('#<%=imagePost.ClientID%>').attr('src', e.target.result);
-            }
+                }
                 reader.readAsDataURL(this.files[0]);
                 alert('É uma imagem válida')
+                }
+                else {
+                    $('#<%=imagePost.ClientID%>').attr('src', '');
+                alert('Não é uma imagem válida')
             }
-            else {
-                $('#<%=imagePost.ClientID%>').attr('src', '');
-            alert('Não é uma imagem válida')
+        });
+        function testar() {
+            var valor = document.getElementById('txtBodyPost').value;
+            if (/[\n|\n\r]/.test(valor)) {
+                valor = valor.replace(/[\n|\n\r]/g, '<br/>');
+            }
+            lblTeste.innerHTML = valor;
         }
-    });
+        function setPopUp() {
+            var ta = document.querySelector("textarea");
+            ta.value = ta.value.substring(0, ta.selectionStart) +
+                       "<a  href=\"javascript:$find(`modalPopUpEmail`).show();\">" + ta.value.substring(ta.selectionStart, ta.selectionEnd) + "</a>" +
+                       ta.value.substring(ta.selectionEnd);
+            lblTeste.innerHTML = ta.value;
+            testar();
+        }
+        function h2() {
+            var ta = document.querySelector("textarea");
+            ta.value = ta.value.substring(0, ta.selectionStart) +
+                       "<h2>" + ta.value.substring(ta.selectionStart, ta.selectionEnd) + "</h2>" +
+                       ta.value.substring(ta.selectionEnd);
+            lblTeste.innerHTML = ta.value;
+            testar();
+        }
+        function h3() {
+            var ta = document.querySelector("textarea");
+            ta.value = ta.value.substring(0, ta.selectionStart) +
+                       "<h3>" + ta.value.substring(ta.selectionStart, ta.selectionEnd) + "</h3>" +
+                       ta.value.substring(ta.selectionEnd);
+            lblTeste.innerHTML = ta.value;
+            testar();
+        }
+
+        function negrito() {
+            var ta = document.querySelector("textarea");
+            ta.value = ta.value.substring(0, ta.selectionStart) +
+                       "<b>" + ta.value.substring(ta.selectionStart, ta.selectionEnd) + "</b>" +
+                       ta.value.substring(ta.selectionEnd);
+            lblTeste.innerHTML = ta.value;
+            testar();
+        }
+        function italico() {
+            var ta = document.querySelector("textarea");
+            ta.value = ta.value.substring(0, ta.selectionStart) +
+                       "<i>" + ta.value.substring(ta.selectionStart, ta.selectionEnd) + "</i>" +
+                       ta.value.substring(ta.selectionEnd);
+            lblTeste.innerHTML = ta.value;
+            ;
+        }
+        function sublinhado() {
+            var ta = document.querySelector("textarea");
+            ta.value = ta.value.substring(0, ta.selectionStart) +
+                       "<u>" + ta.value.substring(ta.selectionStart, ta.selectionEnd) + "</u>" +
+                       ta.value.substring(ta.selectionEnd);
+            lblTeste.innerHTML = ta.value;
+            testar();
+        }
+        function link() {
+            var ta = document.querySelector("textarea");
+            ta.value = ta.value.substring(0, ta.selectionStart) +
+                       "<a href=" + textLink.value + ">" + ta.value.substring(ta.selectionStart, ta.selectionEnd) + "</a>" +
+                       ta.value.substring(ta.selectionEnd);
+            lblTeste.innerHTML = ta.value;
+            testar();
+        }
     </script>
 </body>
 </html>

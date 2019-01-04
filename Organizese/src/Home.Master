@@ -1,12 +1,12 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="Organizese.src.Home" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
     <!-- Bootstrap CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -68,12 +68,38 @@
             </asp:ContentPlaceHolder>
             </div>
         </div>
-    </form>
+   
+
+    <asp:ScriptManager ID="ScriptManagerPad" runat="server"></asp:ScriptManager>
+
+        <asp:Panel CssClass="modalPopUp" ID="pnlPopUp" Style="display: none;" runat="server">
+            <div>
+                <asp:Button ID="cmdFechar" Text="X" runat="server" />
+                <h2>Novo popup</h2>
+            </div>
+        </asp:Panel>
+        <asp:Label ID="lblTeste" runat="server"></asp:Label>
+
+        <asp:ModalPopupExtender ID="modalPopUpEmail" runat="server"
+            BehaviorID="modalPopUpEmail"
+            BackgroundCssClass="modalBackground"
+            CancelControlID="cmdFechar" DropShadow="true"
+            PopupControlID="pnlPopUp" PopupDragHandleControlID="panel3"
+            TargetControlID="lblTeste">
+        </asp:ModalPopupExtender>
+     </form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
     <script src="bootstrap/js/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+            setTimeout(function () {
+                //$find("modalPopUpEmail").show();
+            }, 8000);
+        });
+    </script>
 </body>
 </html>

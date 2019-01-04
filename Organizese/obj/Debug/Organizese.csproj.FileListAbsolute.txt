@@ -35,3 +35,4 @@ D:\Jeff\Organizese\Organizese\bin\Google.Protobuf.dll
 D:\Jeff\Organizese\Organizese\bin\MySql.Data.dll
 D:\Jeff\Organizese\Organizese\bin\Google.Protobuf.xml
 D:\Jeff\Organizese\Organizese\bin\MySql.Data.xml
+D:\Jeff\Organizese\Organizese\bin\AjaxControlToolkit.dll
