@@ -12,12 +12,22 @@ using System.IO;
 
 namespace Organizese.src
 {
+    #region Tipos de Usuários
+    /*
+     * E = Apenas Lista de e-mail 
+     * F = Free
+     * P = Premium
+     *
+    */
+    #endregion
+
     public class LinkGeral
     {
         //local
-        //private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
+        private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
         //Produção
-        private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
+        //private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
+
         MySqlConnection connection = new MySqlConnection(connString);
 
         public DataTable Posts()
@@ -63,7 +73,7 @@ namespace Organizese.src
                     "    ID , CONCAT(DATE_FORMAT(DATA,'%d/%m/%Y') ,' - ', TITULO) AS POST " +
                     " FROM " +
                     "   POSTS " +
-                    "   ORDER BY DATA DESC "
+                    "   ORDER BY DATA DESC, ID DESC "
                     , connection);
                 dt.Load(query.ExecuteReader());
 
@@ -145,7 +155,7 @@ namespace Organizese.src
             string extensao = Path.GetExtension(fileUpload.PostedFile.FileName).ToLower();
             try
             {
-                MySqlCommand queryCheck = new MySqlCommand("SELECT ID FROM IMG WHERE IDPOSTS = '"+ idPost + "'", connection);
+                MySqlCommand queryCheck = new MySqlCommand("SELECT ID FROM IMG WHERE IDPOSTS = '" + idPost + "'", connection);
 
                 DataTable dt = new DataTable();
                 connection.Open();
@@ -158,7 +168,7 @@ namespace Organizese.src
                 string queryTip = novo
                     ? "INSERT INTO IMG (ID,IDPOSTS, NOME, ARQUIVO, ORDEM) VALUES " +
                     " ('" + idImg + "','" + idPost + "','" + fileName + "','" + gravar + "',0)"
-                    : "UPDATE IMG SET NOME = '" + fileName + "', ARQUIVO = '" + gravar + "' WHERE IDPOSTS='"+ idPost+"' AND ORDEM=0";
+                    : "UPDATE IMG SET NOME = '" + fileName + "', ARQUIVO = '" + gravar + "' WHERE IDPOSTS='" + idPost + "' AND ORDEM=0";
 
                 MySqlCommand query = new MySqlCommand(queryTip, connection);
                 connection.Open();
@@ -196,9 +206,9 @@ namespace Organizese.src
             return ok;
         }
 
-        public bool updatePost(int id, string titulo, string texto, DateTime data, string categoria)
+        public string updatePost(int id, string titulo, string texto, DateTime data, string categoria)
         {
-            bool ok = false;
+            string ok = string.Empty ;
 
             try
             {
@@ -214,11 +224,12 @@ namespace Organizese.src
                 connection.Open();
                 query.ExecuteNonQuery();
                 connection.Close();
-                ok = true;
+                ok = "ok";
             }
             catch (Exception ex)
             {
                 connection.Close();
+                ok = ex.Message;
             }
             return ok;
         }
@@ -240,6 +251,74 @@ namespace Organizese.src
             {
                 connection.Close();
             }
+        }
+
+        public bool validarEmail(string email)
+        {
+            bool cadastrado = false;
+            DataTable dt = new DataTable();
+
+            try
+            {
+                MySqlCommand query = new MySqlCommand("SELECT ID FROM USUARIOS WHERE EMAIL='" + tratarStr(email) + "'",connection);
+                connection.Open();
+                dt.Load(query.ExecuteReader());
+                cadastrado = (dt.Rows.Count > 0 && dt != null) ?  true:false;
+                
+            }catch(Exception ex)
+            {
+                connection.Close();
+                cadastrado = false;
+            }
+            return cadastrado;
+        }
+
+        public bool gravarListaEmail(string nome, string email)
+        {
+            bool ok = false;
+            int id = proxid("USUARIOS");
+            DateTime data = DateTime.Now;
+            try
+            {
+                MySqlCommand query = new MySqlCommand
+                    (" INSERT INTO USUARIOS (ID, NOME, EMAIL, TIPO, DTCAD) VALUES "
+                    + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "')"
+                    , connection);
+
+                connection.Open();
+                query.ExecuteNonQuery();
+                connection.Close();
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                ok = false;
+            }
+            return ok;
+        }
+
+        public bool deletePost(int id)
+        {
+            bool ok = false;
+            try
+            {
+                MySqlCommand query = new MySqlCommand
+                    (" DELETE FROM IMG WHERE IDPOSTS= " + id + "; DELETE FROM POSTS WHERE ID = " + id+";"
+                    , connection);
+
+                connection.Open();
+                query.ExecuteNonQuery();
+                connection.Close();
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                ok = false;
+            }
+            return ok;
+
         }
 
         /*  public bool newPost(string titulo, string img, string texto)
@@ -285,8 +364,8 @@ namespace Organizese.src
                 query.ExecuteNonQuery();
                 connection.Close();
                 return true;
-            } 
-           catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 connection.Close();
                 return false;
@@ -296,7 +375,7 @@ namespace Organizese.src
         //Trata a string
         public string tratarStr(string @_varStr)
         {
-            foreach (var chr in new string[] { "(", ")", "-", "+", "!", "#", "$", "%", "&", "*", "[", "]", "{", "}", ".", "/", ";" })
+            foreach (var chr in new string[] { "DROP ", "TRUNCATE ","DELETE ","UPDATE ", "(", ")", "-", "+", "!", "#", "$", "%", "&", "*", "[", "]", "{", "}", ".", "/", ";" })
             {
                 @_varStr = @_varStr.Replace(chr, "");
             }

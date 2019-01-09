@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="bodyPosts">
-        <asp:Repeater runat="server" ID="RptPosts">
+         <asp:Repeater runat="server" ID="RptPosts">
             <ItemTemplate>
                 <div class="textPost">
                     <div class="textRight">
@@ -14,7 +14,7 @@
                         <span runat="server"><%#Eval("DATAPOST")%></span>
                     </div>
                     <br />
-                    <h1 style="text-align: left;"><%# Eval("TITULO") %></h1>
+                    <p class="title"><%# Eval("TITULO") %></p>
                     <br />
                     <!--Imagem Linha inteira-->
                     <div>
@@ -37,29 +37,28 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-
-
-
         <asp:Panel ID="pnlPopUp" Style="display: none;" runat="server">
             <div style="display: flex; flex-direction: row" class="modalPopUp">
                 <div class="divPopUp">
                     &nbsp
                     <p style="font-weight: bold; color: #fff" class="txtPop">Preencha as informações abaixo e tenha acesso aos nossos conteúdos exclusivos</p>
                     &nbsp
-                    <asp:TextBox runat="server" ID="txtName" CssClass="form-control txtPop" placeholder="Nome..."></asp:TextBox>
+                    <input type="text" id="txtName" class="form-control txtPop" placeholder="Nome..." />
                     &nbsp
                     &nbsp
                     &nbsp
-                    <asp:TextBox runat="server" ID="txtMail" CssClass="form-control txtPop" placeholder="E-mail..."></asp:TextBox>
+                    <input type="text" id="txtMail" class="form-control txtPop" placeholder="E-mail..." />
                     &nbsp
                     &nbsp
                     <div>
-                        <asp:CheckBox ID="chkOkEmail" class="form-check-label" Style="color: #fff;" Text=" Aceito receber o conteúdo exclusivo"  runat="server" />
-                        <asp:Label ID="lblConfirmEmail" style="color:#000" runat="server"></asp:Label>
+                        <input type="checkbox" id="chkOk" class="form-check-label" style="color: #fff;" /><span style="color: #fff">Aceito receber o conteúdo exclusivo</span>
+                        <br />
+                        <br />
+                        <p id="lblMsgRetorno" style="color: #00ff00"></p>
                     </div>
                     &nbsp
                     &nbsp                  
-                    <asp:Button ID="btnConfirm" Text="Confirmar" CssClass="btn btn-primary " Style="width: 120px" onclick="btnConfirm_Click" runat="server" />
+                    <input type="button" id="btnConfirma" value="Confirmar" class="btn btn-primary " style="width: 120px" onclick="validaCadastro()" />
                     &nbsp
                     &nbsp
                     &nbsp
@@ -81,6 +80,42 @@
             PopupControlID="pnlPopUp" PopupDragHandleControlID="panel3"
             TargetControlID="lblTeste">
         </asp:ModalPopupExtender>
+
+        <script type="text/javascript">
+            function validaCadastro() {
+
+                var nome = document.getElementById('txtName').value;
+                var email = document.getElementById('txtMail').value;
+                var chk = document.getElementById('chkOk');
+
+
+                if (email.indexOf('@') <= -1) {
+                    alert("Preencha o e-mail corretamente.");
+                } else if (!nome || !email) {
+                    alert("Preencha corretamente os campos.");
+                } else if (!chk.checked) {
+                    alert("Confirme o recebimento do conteúdo exclusivo.");
+                }
+                else {
+                    PageMethods.gravarEmail(nome,email,onSucess, onError);
+
+                    function onSucess(result) {
+                        lblMsgRetorno.innerHTML = "E-mail cadastrado com sucesso!";
+                    }
+
+                    function onError(result) {
+                        alert('Erro ao cadastrar, por favor tente novamente.');
+                    }
+                }
+
+
+
+            }
+        </script>
+
+
     </div>
+
 </asp:Content>
+
 

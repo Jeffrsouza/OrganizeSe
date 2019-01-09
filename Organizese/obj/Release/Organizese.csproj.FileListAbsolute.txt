@@ -35,3 +35,4 @@ D:\Jeff\Organizese\Organizese\bin\MySql.Data.xml
 D:\Jeff\Organizese\Organizese\obj\Release\Organizese.csprojResolveAssemblyReference.cache
 D:\Jeff\Organizese\Organizese\obj\Release\Organizese.dll
 D:\Jeff\Organizese\Organizese\obj\Release\Organizese.pdb
+D:\Jeff\OrganizeSe\Organizese\bin\AjaxControlToolkit.dll

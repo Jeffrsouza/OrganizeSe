@@ -1,180 +1,286 @@
 ﻿
 
-    body {
+body {
+}
+
+.default {
+}
+
+.section {
+    position: fixed;
+    _position: absolute;
+    top: 30%;
+    margin: 50px auto;
+}
+
+.sectionDiv {
+    width: 25%;
+    flex-direction: column;
+}
+
+.icone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 10px 15px;
+    transition: all 0.4s ease-out;
+    border-radius: 50%;
+}
+
+    .icone#facebook {
+        background-color: #2372a3;
     }
 
-    .default {
+    .icone#instagram {
+        background-color: #3f729b;
     }
 
-          .bodyPosts {
-        height: auto;
-        max-width: 70%;
-        background-color: aliceblue;
-        text-align: center;
-        margin: 20px auto;
+    .icone#mail {
+        background-color: #4682B4;
     }
 
-    .textPost {
-        text-align: left;
-        margin: 20px 20px 20px 20px;
+    .icone#youtube {
+        background-color: #b00;
     }
 
-    .separador {
-        width: 100%;
-        height: 20px;
-        background-color: #fff;
+    .icone:hover {
+        cursor: pointer;
+        transform: translateX(15px);
+        box-shadow: -15px 0px 10px 0px rgba(50,50,50,0.3);
     }
 
-    .textRight {
-        width: 100%;
-        text-align: right;
-        padding-top: 15px;
-    }
+.iconeImg {
+    margin: 0px auto;
+    width: 65%;
+    height: 65%;
+}
 
-    .imgNav {
-        width: 50px;
-        height: 50px;
-    }
+.divGeral {
+    display: flex;
+    flex-direction: row;
+}
 
-    .imgFull {
-        width: 100%;
-        height: auto;
-        border-radius: 15px;
-    }
+.bodyPosts {
+    height: auto;
+    max-width: 700px;
+    background-color: aliceblue;
+    text-align: center;
+    margin: 20px auto;
+}
 
-    .texAndImage {
-        display: flex;
-    }
+.textPost {
+    text-align: left;
+    margin: 20px 20px 20px 20px;
+}
 
-    .imgPart {
-        width: 50%;
-        height: 50%;
-        margin: 0px 20px 15px 0;
-    }
+.separador {
+    width: 100%;
+    height: 20px;
+    background-color: #fff;
+}
 
-    .textImg {
-        width: 50%;
-        height: auto;
-    }
+.textRight {
+    width: 100%;
+    text-align: right;
+    padding-top: 15px;
+}
 
-    .navColor {
-        background-color: #000080;
-        border-color: transparent;
-    }
+.imgNav {
+    width: 50px;
+    height: 50px;
+}
 
-    .linksNav {
+.imgFull {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.texAndImage {
+    display: flex;
+}
+
+.imgPart {
+    width: 50%;
+    height: 50%;
+    margin: 0px 20px 15px 0;
+}
+
+.textImg {
+    width: 50%;
+    height: auto;
+}
+
+.navColor {
+    background-color: #0000EE;
+    border-color: transparent;
+}
+
+.linksNav {
+    color: #fff;
+}
+
+.title {
+    color: #000;
+    font-family: Helvetica;
+    text-align: left;
+    font-size: 35px;
+}
+
+.titleNewPost {
+    font-size: 30px;
+    color: #000;
+    font-family: Helvetica;
+    font-weight: bold;
+    text-align: center;
+}
+
+.subtitle {
+    color: #788998;
+    font-size: 20px;
+    font-family: 'Times New Roman';
+    font-style: oblique;
+    margin: 0 20px 20px 20px;
+}
+
+.bodyNewPost {
+    margin: 20px 20px 20px 20px;
+}
+
+.btnSrc {
+    color: #6495ED;
+    background-color: transparent;
+    border-color: #6495ED;
+    border-width: 2px;
+    border-radius: 7px;
+    padding: 5px 10px;
+}
+
+    .btnSrc:hover {
         color: #fff;
+        background-color: #6495ED;
+        border-color: #6495ED;
+    }
+
+.textPre {
+    text-align: left;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+/*Botões da postagem*/
+.negrito {
+    width: 35px;
+    font-weight: bold;
+    border-color: transparent;
+    border-radius: 5px;
+    background-color: #4682B4;
+}
+
+.italico {
+    width: 35px;
+    font-style: italic;
+    font-weight: bold;
+    border-color: transparent;
+    border-radius: 5px;
+    background-color: #4682B4;
+}
+
+.sublinhado {
+    width: 35px;
+    text-decoration: underline;
+    font-weight: bold;
+    border-color: transparent;
+    border-radius: 5px;
+    background-color: #4682B4;
+}
+
+.btnLink {
+    width: 70px;
+    color: #00ddff;
+    text-decoration: underline;
+    border-color: transparent;
+    border-radius: 5px;
+    background-color: #4682B4;
+}
+
+.modalBackground {
+    background-color: #999;
+    filter: alpha(opacity-]=70);
+    opacity: 0.7;
+}
+
+.modalPopUp {
+    padding: 3px;
+    max-width: 500px;
+}
+
+.divPopUp {
+    background-color: #000080;
+    border-width: 3px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 12px;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.txtPop {
+    width: 90%;
+}
+
+.logoPopUp {
+    width: 200px;
+    height: auto;
+}
+
+@media (max-width: 600px) {
+    /*        background-color:rgba(0, 0, 255, 0.7); */
+    .sectionDiv {
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        bottom: 60px;
+    }
+
+    .section {
+        display: flex;
+        flex-direction: row;
+        margin: auto 25px;
+        padding:11px;
+        position: absolute;
+    }
+
+    .divGeral {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .bodyPosts {
+        height: auto;
+        width: 95%;
     }
 
     .title {
-        color: #000;
-        font-family: Helvetica;
-        font-weight: bold;
+        font-size: 25px;
         text-align: center;
     }
 
-    .titleNewPost {
-        font-size: 30px;
-        color: #000;
-        font-family: Helvetica;
-        font-weight: bold;
-        text-align: center;
+    .icone:hover {
+        cursor: pointer;
+        transform: translateY(-10px);
+        box-shadow: 0px 15px 10px 0px rgba(50,50,50,0.3);
     }
 
-    .subtitle {
-        color: #788998;
-        font-size: 20px;
-        font-family: 'Times New Roman';
-        font-style: oblique;
-        margin: 0 20px 20px 20px;
+    .icone {
+        margin: 0px 10px;
     }
-
-    .bodyNewPost {
-        margin: 20px 20px 20px 20px;
-    }
-
-    .btnSrc {
-        color: #6495ED;
-        background-color: transparent;
-        border-color: #6495ED;
-        border-width: 2px;
-        border-radius: 7px;
-        padding: 5px 10px;
-    }
-
-        .btnSrc:hover {
-            color: #fff;
-            background-color: #6495ED;
-            border-color: #6495ED;
-        }
-
-    .textPre {
-        text-align: left;
-        background-color: #fff;
-        border-radius: 8px;
-    }
-
-    /*Botões da postagem*/
-    .negrito {
-        width: 35px;
-        font-weight: bold;
-        border-color: transparent;
-        border-radius: 5px;
-        background-color: #4682B4;
-    }
-
-    .italico {
-        width: 35px;
-        font-style: italic;
-        font-weight: bold;
-        border-color: transparent;
-        border-radius: 5px;
-        background-color: #4682B4;
-    }
-
-    .sublinhado {
-        width: 35px;
-        text-decoration: underline;
-        font-weight: bold;
-        border-color: transparent;
-        border-radius: 5px;
-        background-color: #4682B4;
-    }
-
-    .btnLink {
-        width: 70px;
-        color: #00ddff;
-        text-decoration: underline;
-        border-color: transparent;
-        border-radius: 5px;
-        background-color: #4682B4;
-    }
-
-    .modalBackground {
-        background-color: #999;
-        filter: alpha(opacity-]=70);
-        opacity: 0.7;
-    }
-
-    .modalPopUp {
-        padding: 3px;
-        max-width: 500px;  
-    }
-    .divPopUp{
-        background-color: #000080;
-        border-width: 3px;
-        border-style: solid;
-        border-color: transparent;
-        border-radius:12px;
-        padding: 3px;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        text-align:left;
-    }
-    .txtPop{
-        width:90%;
-    }
-    .logoPopUp{
-        width: 200px;height:auto;
-    }
+}

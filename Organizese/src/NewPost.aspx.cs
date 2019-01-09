@@ -26,11 +26,12 @@ namespace Organizese.src
                 ddlCat.Items.Add("Empresarial");
                 ddlCat.Items.Add("Pessoal");
 
-
-                string host = Dns.GetHostName();
-                string ipUser = Dns.GetHostAddresses(host)[2].ToString();
-                string ipRede = Dns.GetHostAddresses(host)[3].ToString();
-                lnk.gravaAcesso(host, ipUser, ipRede, DateTime.Now);
+                /*
+                    string host = Dns.GetHostName();
+                    string ipUser = Dns.GetHostAddresses(host)[2].ToString();
+                    string ipRede = Dns.GetHostAddresses(host)[3].ToString();
+                    lnk.gravaAcesso(host, ipUser, ipRede, DateTime.Now);
+                */
 
                 listPosts.Items.Clear();
                 listPosts.DataSource = lnk.LoadPostsByEdit();
@@ -46,7 +47,44 @@ namespace Organizese.src
         {
 
             LinkGeral lnk = new LinkGeral();
-            if (edit == 0)
+            if (chkEdit.Checked)
+            {
+
+                #region Atualiza Postagem
+                int idPostSel = Convert.ToInt32(lblIdPost.Text);
+                string titulo = txtTitle.Text;
+                string textoDigitado = txtBodyPost.Text;
+                string texto = textoDigitado.Replace(Environment.NewLine, "<br/>");
+                DateTime data = DateTime.Now;
+                string categoria = ddlCat.SelectedValue;
+
+               string updatePosted =  lnk.updatePost(idPost, titulo, texto, data, categoria);
+
+                ScriptManager.RegisterClientScriptBlock(
+                Page,
+                Page.GetType(),
+                "Mensagem",
+                "<script type='text/javascript'> alert('"+ updatePosted + "');</script>",
+                false);
+                #endregion
+
+                #region Grava Imagem
+                if (fileUpload.PostedFile != null && !string.IsNullOrEmpty(fileUpload.PostedFile.FileName) && fileUpload.PostedFile.InputStream != null)
+                {
+                    string grvImagem = lnk.gravarImagem(fileUpload, idPost, false) ? "Imagem Gravada" : "Erro ao Gravar Imagem";
+                }
+                #endregion
+                ScriptManager.RegisterClientScriptBlock(
+                 Page,
+                 Page.GetType(),
+                 "Mensagem",
+                 "<script type='text/javascript'> alert('Alterado com sucesso!');</script>",
+                 false);
+
+                //Response.Redirect("http://www.organizeseop.com.br/src/Index.aspx");
+
+            }
+            else
             {
                 int idAtual = lnk.proxid("POSTS");
 
@@ -71,47 +109,10 @@ namespace Organizese.src
                    Page,
                    Page.GetType(),
                    "Mensagem",
-                   "<script type='text/javascript'> alert('Pedido postado com sucesso!');</script>",
+                   "<script type='text/javascript'> alert('Postado com sucesso!');</script>",
                    false);
                 Response.Redirect("http://www.organizeseop.com.br/src/Index.aspx");
             }
-            if (edit == 1 && idPost > 0)
-            {
-                #region Atualiza Postagem
-                string titulo = txtTitle.Text;
-                string texto = txtBodyPost.Text.Replace(Environment.NewLine, "<br/>");
-                DateTime data = DateTime.Now;
-                string categoria = ddlCat.SelectedValue;
-
-                lnk.updatePost(idPost, titulo, texto, data, categoria);
-                #endregion
-
-                #region Grava Imagem
-                if (fileUpload.PostedFile != null && !string.IsNullOrEmpty(fileUpload.PostedFile.FileName) && fileUpload.PostedFile.InputStream != null)
-                {
-                    string grvImagem = lnk.gravarImagem(fileUpload, idPost, false) ? "Imagem Gravada" : "Erro ao Gravar Imagem";
-                }
-                #endregion
-                  ScriptManager.RegisterClientScriptBlock(
-                   Page,
-                   Page.GetType(),
-                   "Mensagem",
-                   "<script type='text/javascript'> alert('Pedido alterado com sucesso!');</script>",
-                   false);
-
-                Response.Redirect("http://www.organizeseop.com.br/src/Index.aspx");
-
-            }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(
-                    Page,
-                    Page.GetType(),
-                    "Mensagem",
-                    "<script type='text/javascript'> alert('Modo de edição: Selecione uma postagem!');</script>",
-                    false);
-            }
-
 
         }
 
@@ -167,6 +168,7 @@ namespace Organizese.src
             DataTable dt = lnk.LoadPostsByEdit(idPost);
             foreach (DataRow dr in dt.Rows)
             {
+                lblIdPost.Text = dr["ID"].ToString();
                 txtTitle.Text = dr["TITULO"].ToString();
                 txtBodyPost.Text = dr["TEXTO"].ToString();
                 imagePost.ImageUrl = "data:image/png;base64," + dr["ARQUIVO"].ToString();
@@ -176,14 +178,22 @@ namespace Organizese.src
 
         protected void btnLimpar_Click(object sender, EventArgs e)
         {
-            txtTitle.Text = txtBodyPost.Text = string.Empty;
-            rblEdit.SelectedValue = "0";
+            lblIdPost.Text = txtTitle.Text = txtBodyPost.Text = string.Empty;
+            btnDelete.Visible= lblIdPost.Visible = chkEdit.Checked = false;
         }
 
-        protected void rblEdit_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnDelete_Click(object sender, EventArgs e)
         {
-            edit = Convert.ToInt32(rblEdit.SelectedValue);
-            listPosts.Enabled = listPosts.Visible = edit == 1 ? true : false;
+            LinkGeral lnk = new LinkGeral();
+            bool ok = lnk.deletePost(Convert.ToInt32(lblIdPost.Text));
+            Response.Redirect("~/src/NewPost.aspx");
         }
+
+        protected void chkEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            edit = chkEdit.Checked ? 1 : 0;
+            btnDelete.Visible = lblIdPost.Visible = listPosts.Enabled = listPosts.Visible = chkEdit.Checked;
+        }
+
     }
 }

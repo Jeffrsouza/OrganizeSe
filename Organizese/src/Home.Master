@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="Organizese.src.Home" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <!DOCTYPE html>
 
@@ -10,19 +11,19 @@
 
     <!-- Bootstrap CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-     <!-- Styles CSS -->
+    <!-- Styles CSS -->
     <link href="styles/style.css" rel="stylesheet" />
 
 
     <title>Organize-se!</title>
-
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-light navColor">
-        <asp:Image ID="imgLogoNav" runat="server" src="img/imgLogo.png" class="imgNav" />
+        <asp:Image ID="imgLogoNav" runat="server" src="img/imgLogo3d.png" class="imgNav" />
         &nbsp    
         <a class="navbar-brand linksNav" href="#"><span class="linksNav">Organize-se</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -35,25 +36,8 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="#"><span class="linksNav">Home</span></a>
                 </li>
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="linksNav">Blog</span></a>
-                </li>
-                <li class="nav-item dropdown linksNav">
-                    <button type="button" class="btn btn-primary dropdown-toggle navColor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Consultoria
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Empresas</a>
-                        <a class="dropdown-item" href="#">Estudantes</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Demais segmentos...</a>
-                    </div>
-                </li>
-                     <a class="nav-link" href="NewPost.aspx">Área Restrita</a>
-                -->
             </ul>
-            <div style="display:flex;flex-direction:row">               
+            <div style="display: flex; flex-direction: row">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 &nbsp
                 <button class="btnSrc" type="submit">Search</button>
@@ -62,32 +46,38 @@
     </nav>
     <div style="height: 60px">&nbsp</div>
     <form id="form1" runat="server">
-        <div style="align-items: center; display: flex; flex-direction: row;  ">
-            <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+
+        <div class="divGeral">
+            <div class="sectionDiv">
+                <section class="section">
+                    <a href="https://www.facebook.com/conteudosorganizese/?modal=admin_todo_tour" target="_blanck">
+                        <div class="icone" id="facebook">
+                            <img src="img/facebook.png" class="iconeImg" />
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/organizeestrategias/https://www.instagram.com/organizeestrategias/" target="_blanck">
+                        <div class="icone" id="instagram">
+                            <img src="img/instagram.png" class="iconeImg" />
+                        </div>
+                    </a>
+                    <a href="mailto:organizeseestrategias@gmail.com" target="_blanck">
+                        <div class="icone" id="mail">
+                            <img src="img/email.png" class="iconeImg" />
+                        </div>
+                    </a>
+                </section>
+            </div>
+
+            <div style="align-items: center; display: flex; flex-direction: column;">
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
             </div>
         </div>
-   
 
-    <asp:ScriptManager ID="ScriptManagerPad" runat="server"></asp:ScriptManager>
-
-        <asp:Panel CssClass="modalPopUp" ID="pnlPopUp" Style="display: none;" runat="server">
-            <div>
-                <asp:Button ID="cmdFechar" Text="X" runat="server" />
-                <h2>Novo popup</h2>
-            </div>
-        </asp:Panel>
-        <asp:Label ID="lblTeste" runat="server"></asp:Label>
-
-        <asp:ModalPopupExtender ID="modalPopUpEmail" runat="server"
-            BehaviorID="modalPopUpEmail"
-            BackgroundCssClass="modalBackground"
-            CancelControlID="cmdFechar" DropShadow="true"
-            PopupControlID="pnlPopUp" PopupDragHandleControlID="panel3"
-            TargetControlID="lblTeste">
-        </asp:ModalPopupExtender>
-     </form>
+        <asp:ScriptManager ID="ScriptManagerPad" runat="server" EnablePageMethods='true'></asp:ScriptManager>
+    </form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -95,7 +85,7 @@
     <script src="bootstrap/js/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-    $(document).ready(function () {
+        $(document).ready(function () {
             setTimeout(function () {
                 //$find("modalPopUpEmail").show();
             }, 8000);

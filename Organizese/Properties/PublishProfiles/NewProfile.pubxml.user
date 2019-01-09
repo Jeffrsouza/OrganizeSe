@@ -12,6 +12,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="ApplicationInsights.config">
       <publishTime>12/18/2018 08:54:18</publishTime>
     </File>
+    <File Include="bin/AjaxControlToolkit.dll">
+      <publishTime>01/03/2019 13:16:45</publishTime>
+    </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>12/18/2018 08:54:18</publishTime>
     </File>
@@ -46,7 +49,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/26/2018 06:42:22</publishTime>
     </File>
     <File Include="bin/Organizese.dll">
-      <publishTime>12/28/2018 19:48:20</publishTime>
+      <publishTime>01/09/2019 16:08:10</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 19:19:46</publishTime>
@@ -85,7 +88,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/18/2015 19:19:46</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>12/18/2018 16:37:57</publishTime>
+      <publishTime>01/04/2019 12:49:48</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>12/18/2018 12:31:35</publishTime>
@@ -95,6 +98,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="scripts/ai.0.22.9-build00167.min.js">
       <publishTime>12/18/2018 08:54:18</publishTime>
+    </File>
+    <File Include="src/bootstrap-wysiwyg.js">
+      <publishTime>01/02/2019 13:58:09</publishTime>
     </File>
     <File Include="src/bootstrap/css/.DS_Store">
       <publishTime>12/18/2018 09:19:17</publishTime>
@@ -165,8 +171,104 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="src/bootstrap/js/popper.min.js">
       <publishTime>12/18/2018 09:29:34</publishTime>
     </File>
+    <File Include="src/external/google-code-prettify/lang-apollo.js">
+      <publishTime>01/02/2019 13:43:30</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-basic.js">
+      <publishTime>01/02/2019 13:43:30</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-clj.js">
+      <publishTime>01/02/2019 13:43:31</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-css.js">
+      <publishTime>01/02/2019 13:43:31</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-dart.js">
+      <publishTime>01/02/2019 13:43:31</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-erlang.js">
+      <publishTime>01/02/2019 13:43:32</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-go.js">
+      <publishTime>01/02/2019 13:43:32</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-hs.js">
+      <publishTime>01/02/2019 13:43:32</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-lisp.js">
+      <publishTime>01/02/2019 13:43:32</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-llvm.js">
+      <publishTime>01/02/2019 13:43:33</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-lua.js">
+      <publishTime>01/02/2019 13:43:33</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-matlab.js">
+      <publishTime>01/02/2019 13:43:33</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-ml.js">
+      <publishTime>01/02/2019 13:43:33</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-mumps.js">
+      <publishTime>01/02/2019 13:43:34</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-n.js">
+      <publishTime>01/02/2019 13:43:34</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-pascal.js">
+      <publishTime>01/02/2019 13:43:34</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-proto.js">
+      <publishTime>01/02/2019 13:43:34</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-r.js">
+      <publishTime>01/02/2019 13:43:35</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-rd.js">
+      <publishTime>01/02/2019 13:43:35</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-scala.js">
+      <publishTime>01/02/2019 13:43:35</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-sql.js">
+      <publishTime>01/02/2019 13:43:35</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-tcl.js">
+      <publishTime>01/02/2019 13:43:35</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-tex.js">
+      <publishTime>01/02/2019 13:43:36</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-vb.js">
+      <publishTime>01/02/2019 13:43:36</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-vhdl.js">
+      <publishTime>01/02/2019 13:43:36</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-wiki.js">
+      <publishTime>01/02/2019 13:43:36</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-xq.js">
+      <publishTime>01/02/2019 13:43:36</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/lang-yaml.js">
+      <publishTime>01/02/2019 13:43:37</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/prettify.css">
+      <publishTime>01/02/2019 13:43:37</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/prettify.js">
+      <publishTime>01/02/2019 13:43:37</publishTime>
+    </File>
+    <File Include="src/external/google-code-prettify/run_prettify.js">
+      <publishTime>01/02/2019 13:43:37</publishTime>
+    </File>
+    <File Include="src/external/jquery.hotkeys.js">
+      <publishTime>01/02/2019 13:43:22</publishTime>
+    </File>
     <File Include="src/Home.Master">
-      <publishTime>12/28/2018 16:40:32</publishTime>
+      <publishTime>01/09/2019 11:27:42</publishTime>
     </File>
     <File Include="src/img/calendar.png">
       <publishTime>12/27/2018 16:35:23</publishTime>
@@ -174,26 +276,62 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="src/img/consultoriaFull.jpg">
       <publishTime>12/18/2018 14:20:43</publishTime>
     </File>
+    <File Include="src/img/email.png">
+      <publishTime>01/09/2019 10:47:12</publishTime>
+    </File>
+    <File Include="src/img/facebook.png">
+      <publishTime>01/08/2019 23:25:06</publishTime>
+    </File>
+    <File Include="src/img/favicon.ico">
+      <publishTime>01/09/2019 11:03:18</publishTime>
+    </File>
     <File Include="src/img/imgLogo.png">
       <publishTime>12/18/2018 17:59:44</publishTime>
+    </File>
+    <File Include="src/img/imgLogo3d.png">
+      <publishTime>01/09/2019 10:22:52</publishTime>
     </File>
     <File Include="src/img/indice.jpg">
       <publishTime>12/18/2018 14:21:07</publishTime>
     </File>
+    <File Include="src/img/instagram.png">
+      <publishTime>01/08/2019 23:25:06</publishTime>
+    </File>
+    <File Include="src/img/logo.png">
+      <publishTime>01/04/2019 08:46:15</publishTime>
+    </File>
+    <File Include="src/img/plus.png">
+      <publishTime>01/08/2019 23:25:06</publishTime>
+    </File>
+    <File Include="src/img/snap.png">
+      <publishTime>01/08/2019 23:25:06</publishTime>
+    </File>
+    <File Include="src/img/twitter.png">
+      <publishTime>01/08/2019 23:25:06</publishTime>
+    </File>
+    <File Include="src/img/youtube.png">
+      <publishTime>01/08/2019 23:25:06</publishTime>
+    </File>
     <File Include="src/index.aspx">
-      <publishTime>12/28/2018 19:45:39</publishTime>
+      <publishTime>01/09/2019 09:57:41</publishTime>
     </File>
     <File Include="src/js/functions.js">
       <publishTime>12/27/2018 15:54:03</publishTime>
     </File>
     <File Include="src/NewPost.aspx">
-      <publishTime>12/28/2018 19:02:43</publishTime>
+      <publishTime>01/09/2019 15:24:56</publishTime>
+    </File>
+    <File Include="src/styles/NewPost.css">
+      <publishTime>01/02/2019 13:51:11</publishTime>
     </File>
     <File Include="src/styles/style.css">
-      <publishTime>12/28/2018 19:34:14</publishTime>
+      <publishTime>01/09/2019 10:45:27</publishTime>
+    </File>
+    <File Include="src/TextArea.html">
+      <publishTime>01/02/2019 12:47:03</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/18/2018 16:30:14</publishTime>
+      <publishTime>01/04/2019 16:59:14</publishTime>
     </File>
   </ItemGroup>
 </Project>

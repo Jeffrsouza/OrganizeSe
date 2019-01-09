@@ -22,15 +22,13 @@
             <div class="bodyNewPost">
                 <p class="titleNewPost">Postagem</p>
                 <div style="display:flex;flex-direction:row;align-items:center">
-                    <div >
-                     <asp:RadioButtonList ID="rblEdit" runat="server" style="margin:20px" AutoPostBack="true"  OnTextChanged="rblEdit_SelectedIndexChanged">
-                        <asp:ListItem Text="Novo" Value="0" Selected="True" />
-                        <asp:ListItem Text="Editar" Value="1" />
-                    </asp:RadioButtonList>
-                    </div>
-                    &nbsp&nbsp&nbsp&nbsp
-                  <asp:ListBox ID="listPosts" runat="server" AutoPostBack="true" style="max-width:500px; max-height:200px" visible="false" OnSelectedIndexChanged="listPosts_SelectedIndexChanged" ></asp:ListBox>
-                    &nbsp&nbsp&nbsp&nbsp   
+                        <asp:CheckBox  ID="chkEdit" runat="server" style="margin:20px" AutoPostBack="true"  OnCheckedChanged="chkEdit_CheckedChanged" Text="Edição" />
+                    &nbsp
+                  <asp:ListBox ID="listPosts" runat="server" AutoPostBack="true" style="width:500px; height:200px" visible="false" OnSelectedIndexChanged="listPosts_SelectedIndexChanged" ></asp:ListBox>
+                    &nbsp
+                    <asp:Label ID="lblIdPost" Visible="false" runat="server"></asp:Label>
+                    &nbsp   
+                    <asp:Button ID="btnDelete" runat="server" Text="Deletar" Visible="false" OnClick="btnDelete_Click" />                
                     <asp:Button ID="btnLimpar" runat="server" Text="Limpar" OnClick="btnLimpar_Click" />                
                     </div>
                 <br />
