@@ -83,6 +83,10 @@
                 var email = document.getElementById('txtMail').value;
                 var chk = document.getElementById('chkOk');
 
+                var wl = window.location.href;
+                var idPost = wl.substring(wl.indexOf("?id=") + 4);
+                
+
                 if (email.indexOf('@') <= -1) {
                     alert("Preencha o e-mail corretamente.");
                 } else if (!nome || !email) {
@@ -91,7 +95,7 @@
                     alert("Confirme o recebimento do conteúdo exclusivo.");
                 }
                 else {
-                    PageMethods.gravarEmail(nome,email,onSucess, onError);
+                    PageMethods.gravarEmail(nome,email,id,onSucess, onError);
 
                     function onSucess(result) {
                         document.getElementById('btnOrganizador').style.visibility = "visible";
