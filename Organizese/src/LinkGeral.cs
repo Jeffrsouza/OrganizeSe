@@ -23,12 +23,88 @@ namespace Organizese.src
 
     public class LinkGeral
     {
+        //Trata a string
+        public string tratarStr(string @_varStr)
+        {
+            foreach (var chr in new string[] { "DROP ", "TRUNCATE ", "DELETE ", "UPDATE "/*, "(", ")", "-", "+", "!", "#", "$", "%", "&", "*", "[", "]", "{", "}", "/", ";" */})
+            {
+                @_varStr = @_varStr.Replace(chr, "");
+            }
+
+            return @_varStr;
+        }
+
         //local
         private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
         //Produção
         //private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
 
         MySqlConnection connection = new MySqlConnection(connString);
+
+        #region Carrega Page Blog
+        public DataTable PostPrincipal()
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(
+                    " SELECT " +
+                    "    P.ID, P.TEXTO,P.TITULO, DATE_FORMAT(P.DATA,'%d/%m/%Y') AS DATAPOST, P.CATEGORIA, " +
+                    "    IMG.NOME, CONVERT(IMG.ARQUIVO USING utf8) AS ARQUIVO " +
+                    " FROM " +
+                    "   POSTS P " +
+                    "   LEFT JOIN IMG ON IMG.IDPOSTS = P.ID " +
+                    " WHERE P.ID = (SELECT MAX(ID) FROM POSTS) "
+                    , connection);
+                dt.Load(query.ExecuteReader());
+
+            }
+            catch (Exception ex)
+            {
+                // lblText.Text = "Catch " + ex.Message;
+                dt.Clear();
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
+        public DataTable PostsSecundarios()
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(
+                    " SELECT " +
+                    "    P.ID, P.TEXTO,P.TITULO, DATE_FORMAT(P.DATA,'%d/%m/%Y') AS DATAPOST, P.CATEGORIA, " +
+                    "    IMG.NOME, CONVERT(IMG.ARQUIVO USING utf8) AS ARQUIVO " +
+                    " FROM " +
+                    "   POSTS P " +
+                    "   LEFT JOIN IMG ON IMG.IDPOSTS = P.ID " +
+                    " WHERE P.ID < (SELECT MAX(ID) FROM POSTS) "+
+                    " ORDER BY DATA DESC, ID DESC "
+                    , connection);
+                dt.Load(query.ExecuteReader());
+
+            }
+            catch (Exception ezx)
+            {
+                // lblText.Text = "Catch " + ex.Message;
+                dt.Clear();
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+        #endregion
 
         public DataTable Posts()
         {
@@ -264,8 +340,10 @@ namespace Organizese.src
                 connection.Open();
                 dt.Load(query.ExecuteReader());
                 cadastrado = (dt.Rows.Count > 0 && dt != null) ?  true:false;
-                
-            }catch(Exception ex)
+                connection.Close();
+
+            }
+            catch(Exception ex)
             {
                 connection.Close();
                 cadastrado = false;
@@ -320,46 +398,13 @@ namespace Organizese.src
             return ok;
 
         }
-
-        /*  public bool newPost(string titulo, string img, string texto)
-          {
-              bool ok = false;
-
-              StringBuilder stbPost = new StringBuilder();
-              StringBuilder stbImg = new StringBuilder();
-
-              stbPost.AppendLine(" INSERT INTO POSTS ");
-              stbPost.AppendLine(" (TITULO, TEXTO) ");
-
-              stbImg.AppendLine(" INSERT INTO IMG ");
-              stbImg.AppendLine(" (IDPOSTS, NOME, ARQUIVO, ORDEM) VALUES ");
-              stbImg.AppendLine(" (idpost,nomeImg,arqImg,1) ");
-
-              try
-              {
-                  connection.Open();
-                  MySqlCommand query = new MySqlCommand("SELECT ID, TITULO, TEXTO, DATE_FORMAT(DATA,'%d/%m/%Y') AS DATA, CATEGORIA FROM POSTS ORDER BY DATA DESC", connection);
-                  dt.Load(query.ExecuteReader());
-
-              }
-              catch (Exception ex)
-              {
-                  // lblText.Text = "Catch " + ex.Message;
-                  dt.Clear();
-              }
-              finally
-              {
-                  connection.Close();
-              }
-              return dt;
-          }*/
-
-        public bool gravarEmail(string nome, string email)
+        
+        public bool gravarEmail(string nome, string email, string idPost)
         {
             int id = proxid("USUARIOS");
             try
             {
-                MySqlCommand query = new MySqlCommand(" INSERT INTO USUARIOS (ID, NOME, EMAIL) VALUES ('" + id + "','" + nome + "','" + email + "');", connection);
+                MySqlCommand query = new MySqlCommand(" INSERT INTO USUARIOS (ID, NOME, EMAIL, IDPOSTSCAD) VALUES ('" + id + "','" + nome + "','" + email + "','"+ idPost + "');", connection);
                 connection.Open();
                 query.ExecuteNonQuery();
                 connection.Close();
@@ -372,15 +417,21 @@ namespace Organizese.src
             }
         }
 
-        //Trata a string
-        public string tratarStr(string @_varStr)
+        public string criptId(string id, bool tipo)
         {
-            foreach (var chr in new string[] { "DROP ", "TRUNCATE ","DELETE ","UPDATE ", "(", ")", "-", "+", "!", "#", "$", "%", "&", "*", "[", "]", "{", "}", ".", "/", ";" })
+            string retorno = "";
+            string[] letras = {"H", "J", "K", "L", "Z", "W", "X", "E", "C", "R","Y", "N", "U", "M", "P", "A", "S", "D", "F", "G" };
+            if (tipo)
             {
-                @_varStr = @_varStr.Replace(chr, "");
+                int index = (Convert.ToInt32(id) * 37);
+                int indexLetra = Convert.ToInt32(index.ToString().Substring(0, 1));
+                retorno = letras[indexLetra] + index.ToString()+ letras[indexLetra+7];
             }
-
-            return @_varStr;
+            else
+            {
+                retorno = (Convert.ToInt32(id.Substring(1, id.Length - 2)) / 37).ToString();
+            }
+            return retorno;
         }
 
     }

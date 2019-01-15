@@ -81,7 +81,7 @@ namespace Organizese.src
                  "<script type='text/javascript'> alert('Alterado com sucesso!');</script>",
                  false);
 
-                //Response.Redirect("http://www.organizeseop.com.br/src/Index.aspx");
+                Response.Redirect("~/src/NewPost.aspx");
 
             }
             else
@@ -111,7 +111,7 @@ namespace Organizese.src
                    "Mensagem",
                    "<script type='text/javascript'> alert('Postado com sucesso!');</script>",
                    false);
-                Response.Redirect("http://www.organizeseop.com.br/src/Index.aspx");
+                Response.Redirect("~/src/NewPost.aspx");
             }
 
         }

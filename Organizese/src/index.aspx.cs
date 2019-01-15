@@ -16,22 +16,24 @@ namespace Organizese.src
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack) { 
-            LinkGeral lnk = new LinkGeral();
-            DataTable dt = lnk.Posts();
-            RptPosts.DataSource = dt ;
-            RptPosts.DataBind();
+            if (!Page.IsPostBack)
+            {
+                string paramUrl = Request.QueryString["id"];
+                LinkGeral lnk = new LinkGeral();
+                DataTable dt = lnk.LoadPostsByEdit(Convert.ToInt32(paramUrl));
+                RptPosts.DataSource = dt;
+                RptPosts.DataBind();
                 //Thread.Sleep(10000);
                 //modalPopUpEmail.Show();
             }
 
-            ScriptManager.RegisterClientScriptBlock(
-                  Page,
-                  Page.GetType(),
-                  "Mensagem",
-                  "<script type='text/javascript'> $find(`modalPopUpEmail`).show();</script>",
-                  false);
-        } 
+            //ScriptManager.RegisterClientScriptBlock(
+            //      Page,
+            //      Page.GetType(),
+            //      "Mensagem",
+            //      "<script type='text/javascript'> $find(`modalPopUpEmail`).show();</script>",
+            //      false);
+        }
 
         [WebMethod]
         public static void gravarEmail(string nome, string email)

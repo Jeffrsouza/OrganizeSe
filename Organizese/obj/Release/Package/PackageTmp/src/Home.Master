@@ -55,7 +55,7 @@
                             <img src="img/facebook.png" class="iconeImg" />
                         </div>
                     </a>
-                    <a href="https://www.instagram.com/organizeestrategias/https://www.instagram.com/organizeestrategias/" target="_blanck">
+                    <a href="https://www.instagram.com/organizeestrategias/" target="_blanck">
                         <div class="icone" id="instagram">
                             <img src="img/instagram.png" class="iconeImg" />
                         </div>
@@ -67,12 +67,9 @@
                     </a>
                 </section>
             </div>
-
-            <div style="align-items: center; display: flex; flex-direction: column;">
-                <div>
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
+            <div class="divHome">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
             </div>
         </div>
 

@@ -24,7 +24,7 @@
                 <div style="display:flex;flex-direction:row;align-items:center">
                         <asp:CheckBox  ID="chkEdit" runat="server" style="margin:20px" AutoPostBack="true"  OnCheckedChanged="chkEdit_CheckedChanged" Text="Edição" />
                     &nbsp
-                  <asp:ListBox ID="listPosts" runat="server" AutoPostBack="true" style="width:500px; height:200px" visible="false" OnSelectedIndexChanged="listPosts_SelectedIndexChanged" ></asp:ListBox>
+                  <asp:ListBox ID="listPosts" runat="server" AutoPostBack="true" style="max-width:500px; max-height:200px" visible="false" OnSelectedIndexChanged="listPosts_SelectedIndexChanged" ></asp:ListBox>
                     &nbsp
                     <asp:Label ID="lblIdPost" Visible="false" runat="server"></asp:Label>
                     &nbsp   

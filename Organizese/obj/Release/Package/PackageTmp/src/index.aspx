@@ -6,8 +6,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="bodyPosts">
-         <asp:Repeater runat="server" ID="RptPosts">
+        <asp:Repeater runat="server" ID="RptPosts">
             <ItemTemplate>
+                                <div class="separador"></div>
                 <div class="textPost">
                     <div class="textRight">
                         <img style="width: 25px; height: 25px;" src="img/calendar.png" />
@@ -18,25 +19,17 @@
                     <br />
                     <!--Imagem Linha inteira-->
                     <div>
-                        <asp:Image runat="server" src='<%# "data:image/png;base64,"+ Eval("ARQUIVO") %>' class="imgFull" />
+                        <asp:Image runat="server" src='<%# "data:image/png;base64,"+ Eval("ARQUIVO") %>' class="imgFull"/>
                     </div>
                     <br />
                     <br />
                     <p>
                         <%# Eval("TEXTO") %>
                     </p>
-
-                    <!--
-                    <div class="textRight">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                    </div>
-                         -->
-                </div>
-                <div class="separador">
                 </div>
             </ItemTemplate>
         </asp:Repeater>
+
         <asp:Panel ID="pnlPopUp" Style="display: none;" runat="server">
             <div style="display: flex; flex-direction: row" class="modalPopUp">
                 <div class="divPopUp">
@@ -59,6 +52,8 @@
                     &nbsp
                     &nbsp                  
                     <input type="button" id="btnConfirma" value="Confirmar" class="btn btn-primary " style="width: 120px" onclick="validaCadastro()" />
+                    &nbsp   
+                     <a href="https://drive.google.com/open?id=1hpAclke7AjMeIN0yvfD-r4OGmxI6pT8t" target="_blank"><input type="button" id="btnOrganizador"  value="Baixe seu Planejador!" class="btn btn-primary " style="width: 170px;visibility:hidden" onclick="validaCadastro()" /></a>
                     &nbsp
                     &nbsp
                     &nbsp
@@ -88,7 +83,6 @@
                 var email = document.getElementById('txtMail').value;
                 var chk = document.getElementById('chkOk');
 
-
                 if (email.indexOf('@') <= -1) {
                     alert("Preencha o e-mail corretamente.");
                 } else if (!nome || !email) {
@@ -100,6 +94,7 @@
                     PageMethods.gravarEmail(nome,email,onSucess, onError);
 
                     function onSucess(result) {
+                        document.getElementById('btnOrganizador').style.visibility = "visible";
                         lblMsgRetorno.innerHTML = "E-mail cadastrado com sucesso!";
                     }
 
@@ -107,9 +102,6 @@
                         alert('Erro ao cadastrar, por favor tente novamente.');
                     }
                 }
-
-
-
             }
         </script>
 
