@@ -36,6 +36,7 @@ namespace Organizese.src
 
         //local
         //private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
+        
         //Produção
         private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
 
@@ -317,6 +318,26 @@ namespace Organizese.src
                 MySqlCommand query = new MySqlCommand
                     (" INSERT INTO VISITORS (HOST,IPUSER ,IPREDE ,DATA) VALUES "
                     + "('" + host + "','" + ipuser + "','" + iprede + "','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "')"
+                    , connection);
+
+                connection.Open();
+                query.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+            }
+        }
+
+        public void gravarVisista(string page)
+        {
+            try
+            {
+                DateTime data = DateTime.Now;
+                MySqlCommand query = new MySqlCommand
+                    (" INSERT INTO VISITAS (PAGE ,DATA) VALUES "
+                    + "('" + page +"','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "')"
                     , connection);
 
                 connection.Open();

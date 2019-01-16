@@ -17,7 +17,11 @@ namespace Organizese.src
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Page.IsPostBack)
+            {
+                LinkGeral lnk = new LinkGeral();
+                lnk.gravarVisista("popUp");
+            }
         }
         [WebMethod]
         public static void gravarEmail(string nome,string email )

@@ -20,6 +20,9 @@ namespace Organizese.src
             {
                 string paramUrl = Request.QueryString["id"];
                 LinkGeral lnk = new LinkGeral();
+
+                lnk.gravarVisista("post:"+paramUrl);
+
                 DataTable dt = lnk.LoadPostsByEdit(Convert.ToInt32(paramUrl));
                 RptPosts.DataSource = dt;
                 RptPosts.DataBind();

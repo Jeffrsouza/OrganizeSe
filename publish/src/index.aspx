@@ -8,7 +8,7 @@
     <div class="bodyPosts">
         <asp:Repeater runat="server" ID="RptPosts">
             <ItemTemplate>
-                                <div class="separador"></div>
+                <div class="separador"></div>
                 <div class="textPost">
                     <div class="textRight">
                         <img style="width: 25px; height: 25px;" src="img/calendar.png" />
@@ -19,7 +19,7 @@
                     <br />
                     <!--Imagem Linha inteira-->
                     <div>
-                        <asp:Image runat="server" src='<%# "data:image/png;base64,"+ Eval("ARQUIVO") %>' class="imgFull"/>
+                        <asp:Image runat="server" src='<%# "data:image/png;base64,"+ Eval("ARQUIVO") %>' class="imgFull" />
                     </div>
                     <br />
                     <br />
@@ -52,7 +52,7 @@
                     &nbsp
                     &nbsp                  
                     <input type="button" id="btnConfirma" value="Confirmar" class="btn btn-primary " style="width: 120px" onclick="validaCadastro()" />
-                     &nbsp
+                    &nbsp
                     &nbsp
                     &nbsp
                     <img src="img/logo.png" class="logoPopUp" />
@@ -64,6 +64,7 @@
                 </div>
             </div>
         </asp:Panel>
+
         <asp:Label ID="lblTeste" runat="server"></asp:Label>
 
         <asp:ModalPopupExtender ID="modalPopUpEmail" runat="server"
@@ -83,7 +84,7 @@
 
                 var wl = window.location.href;
                 var idPost = wl.substring(wl.indexOf("?id=") + 4);
-                
+
 
                 if (email.indexOf('@') <= -1) {
                     alert("Preencha o e-mail corretamente.");
@@ -105,8 +106,6 @@
                 }
             }
         </script>
-
-
     </div>
 
 </asp:Content>

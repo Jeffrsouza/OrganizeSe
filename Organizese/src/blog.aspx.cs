@@ -16,6 +16,8 @@ namespace Organizese.src
             {
                 LinkGeral lnk = new LinkGeral();
 
+                lnk.gravarVisista("blog.aspx");
+
                 DataTable dtPrincipal = lnk.PostPrincipal();
                 RptPrincipal.DataSource = dtPrincipal;
                 RptPrincipal.DataBind();

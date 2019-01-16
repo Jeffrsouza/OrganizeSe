@@ -5,11 +5,16 @@ body {
 
 .default {
 }
-.divHome{
-    align-items: center; 
-    display: flex; 
+
+.divHome {
+    align-items: center;
+    display: flex;
     flex-direction: column;
-    background-color:aliceblue;
+    width: 60%;
+}
+
+.espaceNav {
+    width: 20%;
 }
 
 .section {
@@ -19,12 +24,19 @@ body {
     margin: 50px auto;
 }
 
+.divLeftHome {
+    width: 20%;
+    flex-direction: column;
+}
+
 .sectionDiv {
-    width: 25%;
+    width: 20%;
     flex-direction: column;
 }
 
 .icone {
+    z-index: 3;
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -63,6 +75,32 @@ body {
     height: 65%;
 }
 
+.imgBtn {
+    position: relative;
+    text-align: center;
+    width: 80%;
+}
+
+    .imgBtn a {
+        position: absolute;
+        z-index: 1;
+        top: 70%;
+        left: 60%;
+        width: 20%;
+        height: 10%;
+        padding: 0;
+        border: 0 none;
+        font-size: 50%;
+        background-color: transparent;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+.imgRodape {
+    width: 100%;
+    height: auto;
+    padding: 70px 50px 50px 70px;
+}
+
 .divGeral {
     display: flex;
     flex-direction: row;
@@ -70,7 +108,7 @@ body {
 
 .bodyPosts {
     height: auto;
-    max-width: 700px;
+    max-width: 100%;
     background-color: aliceblue;
     text-align: center;
     margin: 20px auto;
@@ -92,8 +130,8 @@ body {
     text-align: right;
     padding-top: 15px;
     padding-right: 15px;
-    font-weight:bold;
-    color:#818181
+    font-weight: bold;
+    color: #818181;
 }
 
 .textLeft {
@@ -257,17 +295,17 @@ body {
 }
 
 .bodyPostsSecundarios {
-    width: 700px;
+    width: 100%;
 }
 
 .postsSecundarios {
     float: left;
-    margin: 20px 20px 20px 20px;
+    margin: 5% 5% 5% 5%;
     text-align: center;
-    width: 310px;
-    border:5px solid #4682B4;
-    border-radius:5px;
-    height: 360px;
+    width: 40%;
+    border: 5px solid #4682B4;
+    border-radius: 5px;
+    height: auto;
 }
 
 .imgSecundaria {
@@ -279,9 +317,10 @@ body {
 @media (max-width: 600px) {
     /*        background-color:rgba(0, 0, 255, 0.7); */
 
-    .divHome{
-    background-color:transparent;
-}
+    .divHome {
+        background-color: transparent;
+        width: 100%;
+    }
 
     .sectionDiv {
         display: flex;
@@ -317,7 +356,6 @@ body {
         height: auto;
         width: 95%;
         margin: 20px 20px 20px 20px;
-
     }
 
     .bodyPostsSecundarios {
@@ -325,8 +363,7 @@ body {
         flex-direction: column;
         align-items: center;
         width: 100%;
-            background-color:aliceblue;
-
+        background-color: aliceblue;
     }
 
     .title {
@@ -342,5 +379,31 @@ body {
 
     .icone {
         margin: 0px 5px;
+    }
+
+    .imgBtn {
+        width: 100%;
+    }
+
+        .imgBtn a {
+            position: absolute;
+            left: 60%;
+            width: 40%;
+            height: 20%;
+            border: 0 none;
+            border-radius: 7px;
+            font-size: 50%;
+            margin-top: 12%;
+            background-color: transparent;
+        }
+
+    .imgRodape {
+        width: 100%;
+        height: auto;
+        padding: 0 0 0 0;
+    }
+
+    .espaceNav {
+        width: 0px;
     }
 }
