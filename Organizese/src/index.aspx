@@ -8,7 +8,7 @@
     <div class="bodyPosts">
         <asp:Repeater runat="server" ID="RptPosts">
             <ItemTemplate>
-                                <div class="separador"></div>
+                <div class="separador"></div>
                 <div class="textPost">
                     <div class="textRight">
                         <img style="width: 25px; height: 25px;" src="img/calendar.png" />
@@ -19,7 +19,7 @@
                     <br />
                     <!--Imagem Linha inteira-->
                     <div>
-                        <asp:Image runat="server" src='<%# "data:image/png;base64,"+ Eval("ARQUIVO") %>' class="imgFull"/>
+                        <asp:Image runat="server" src='<%# "data:image/png;base64,"+ Eval("ARQUIVO") %>' class="imgFull" />
                     </div>
                     <br />
                     <br />
@@ -52,8 +52,6 @@
                     &nbsp
                     &nbsp                  
                     <input type="button" id="btnConfirma" value="Confirmar" class="btn btn-primary " style="width: 120px" onclick="validaCadastro()" />
-                    &nbsp   
-                     <a href="https://drive.google.com/open?id=1hpAclke7AjMeIN0yvfD-r4OGmxI6pT8t" target="_blank"><input type="button" id="btnOrganizador"  value="Baixe seu Planejador!" class="btn btn-primary " style="width: 170px;visibility:hidden" onclick="validaCadastro()" /></a>
                     &nbsp
                     &nbsp
                     &nbsp
@@ -66,6 +64,7 @@
                 </div>
             </div>
         </asp:Panel>
+
         <asp:Label ID="lblTeste" runat="server"></asp:Label>
 
         <asp:ModalPopupExtender ID="modalPopUpEmail" runat="server"
@@ -85,7 +84,7 @@
 
                 var wl = window.location.href;
                 var idPost = wl.substring(wl.indexOf("?id=") + 4);
-                
+
 
                 if (email.indexOf('@') <= -1) {
                     alert("Preencha o e-mail corretamente.");
@@ -95,10 +94,9 @@
                     alert("Confirme o recebimento do conteúdo exclusivo.");
                 }
                 else {
-                    PageMethods.gravarEmail(nome,email,id,onSucess, onError);
+                    PageMethods.gravarEmail(nome, email, idPost, onSucess, onError);
 
                     function onSucess(result) {
-                        document.getElementById('btnOrganizador').style.visibility = "visible";
                         lblMsgRetorno.innerHTML = "E-mail cadastrado com sucesso!";
                     }
 
@@ -108,8 +106,6 @@
                 }
             }
         </script>
-
-
     </div>
 
 </asp:Content>

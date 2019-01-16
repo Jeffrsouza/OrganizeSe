@@ -36,11 +36,11 @@ namespace Organizese.src
         }
 
         [WebMethod]
-        public static void gravarEmail(string nome, string email)
+        public static void gravarEmail(string nome, string email, string idPostsCad)
         {
             LinkGeral lnk = new LinkGeral();
             bool cadastrado = lnk.validarEmail(email);
-            if (!cadastrado) { lnk.gravarListaEmail(nome, email); }
+            if (!cadastrado) { lnk.gravarListaEmail(nome, email, idPostsCad); }
         }
     }
 }

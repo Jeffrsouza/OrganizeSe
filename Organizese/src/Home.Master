@@ -71,10 +71,29 @@
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
+            <div class="divLeftHome">
+            </div>
         </div>
-
+        <footer class="page-footer font-small blue pt-4" style="width:100%; display:flex;flex-direction:column; align-items:center">
+            <div class="imgBtn">
+                <asp:Image ID="imgRodape" runat="server" src="img/imgRodape.jpg" class="imgRodape" />
+                <a href="https://simplissimo.com.br/onsales/organize-se" target="_blank">
+                    <img id="imgBtnInt" style="width: 100%; height: 100%; border-radius: 7px;" src="img/btnStart.png" />
+                </a>
+            </div>
+            <div class="separador"></div>
+            <div class="separador"></div>
+            <div class="separador"></div>
+            <div class="footer-copyright text-center py-3">
+                © 2019 Copyright:
+                <a href="http://www.organizeseop.com.br/">Organize-se</a>
+            </div>
+        </footer>
+        <div class="separador"></div>
+        <div class="separador"></div>
         <asp:ScriptManager ID="ScriptManagerPad" runat="server" EnablePageMethods='true'></asp:ScriptManager>
     </form>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

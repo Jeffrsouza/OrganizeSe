@@ -185,10 +185,12 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="src\bootstrap\js\jquery-3.3.1.slim.min.js" />
     <Content Include="src\bootstrap\js\popper.min.js" />
+    <Content Include="src\img\btnStart.png" />
     <Content Include="src\img\email.png" />
     <Content Include="src\img\facebook.png" />
     <Content Include="src\img\favicon.ico" />
     <Content Include="src\img\imgLogo3d.png" />
+    <Content Include="src\img\imgRodape.jpg" />
     <Content Include="src\img\instagram.png" />
     <Content Include="src\img\logo.png" />
     <Content Include="src\img\calendar.png" />
@@ -200,6 +202,7 @@
     <Content Include="src\index.aspx" />
     <Content Include="src\js\functions.js" />
     <Content Include="src\NewPost.aspx" />
+    <Content Include="src\popUp.aspx" />
     <Content Include="src\styles\NewPost.css" />
     <Content Include="src\styles\style.css" />
     <Content Include="src\TextArea.html" />
@@ -235,6 +238,13 @@
     </Compile>
     <Compile Include="src\NewPost.aspx.designer.cs">
       <DependentUpon>NewPost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\popUp.aspx.cs">
+      <DependentUpon>popUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\popUp.aspx.designer.cs">
+      <DependentUpon>popUp.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

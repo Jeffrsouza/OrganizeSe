@@ -52,9 +52,7 @@
                     &nbsp
                     &nbsp                  
                     <input type="button" id="btnConfirma" value="Confirmar" class="btn btn-primary " style="width: 120px" onclick="validaCadastro()" />
-                    &nbsp   
-                     <a href="https://drive.google.com/open?id=1hpAclke7AjMeIN0yvfD-r4OGmxI6pT8t" target="_blank"><input type="button" id="btnOrganizador"  value="Baixe seu Planejador!" class="btn btn-primary " style="width: 170px;visibility:hidden" onclick="validaCadastro()" /></a>
-                    &nbsp
+                     &nbsp
                     &nbsp
                     &nbsp
                     <img src="img/logo.png" class="logoPopUp" />
@@ -95,10 +93,9 @@
                     alert("Confirme o recebimento do conteúdo exclusivo.");
                 }
                 else {
-                    PageMethods.gravarEmail(nome,email,id,onSucess, onError);
+                    PageMethods.gravarEmail(nome, email, idPost, onSucess, onError);
 
                     function onSucess(result) {
-                        document.getElementById('btnOrganizador').style.visibility = "visible";
                         lblMsgRetorno.innerHTML = "E-mail cadastrado com sucesso!";
                     }
 

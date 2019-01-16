@@ -351,7 +351,7 @@ namespace Organizese.src
             return cadastrado;
         }
 
-        public bool gravarListaEmail(string nome, string email)
+        public bool gravarListaEmail(string nome, string email,string idPostsCad)
         {
             bool ok = false;
             int id = proxid("USUARIOS");
@@ -359,8 +359,8 @@ namespace Organizese.src
             try
             {
                 MySqlCommand query = new MySqlCommand
-                    (" INSERT INTO USUARIOS (ID, NOME, EMAIL, TIPO, DTCAD) VALUES "
-                    + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "')"
+                    (" INSERT INTO USUARIOS (ID, NOME, EMAIL, TIPO, DTCAD, IDPOSTSCAD ) VALUES "
+                    + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "','"+ idPostsCad+"')"
                     , connection);
 
                 connection.Open();
@@ -399,12 +399,12 @@ namespace Organizese.src
 
         }
         
-        public bool gravarEmail(string nome, string email, string idPost)
+        public bool gravarEmail(string nome, string email)
         {
             int id = proxid("USUARIOS");
             try
             {
-                MySqlCommand query = new MySqlCommand(" INSERT INTO USUARIOS (ID, NOME, EMAIL, IDPOSTSCAD) VALUES ('" + id + "','" + nome + "','" + email + "','"+ idPost + "');", connection);
+                MySqlCommand query = new MySqlCommand(" INSERT INTO USUARIOS (ID, NOME, EMAIL) VALUES ('" + id + "','" + nome + "','" + email + "');", connection);
                 connection.Open();
                 query.ExecuteNonQuery();
                 connection.Close();
