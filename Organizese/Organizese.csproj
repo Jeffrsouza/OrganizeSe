@@ -190,7 +190,9 @@
     <Content Include="src\img\facebook.png" />
     <Content Include="src\img\favicon.ico" />
     <Content Include="src\img\imgLogo3d.png" />
+    <Content Include="src\img\imgRight.jpg" />
     <Content Include="src\img\imgRodape.jpg" />
+    <Content Include="src\img\inscrevase.png" />
     <Content Include="src\img\instagram.png" />
     <Content Include="src\img\logo.png" />
     <Content Include="src\img\calendar.png" />
