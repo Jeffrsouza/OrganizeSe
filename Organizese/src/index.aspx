@@ -85,13 +85,12 @@
                 var wl = window.location.href;
                 var idPost = wl.substring(wl.indexOf("?id=") + 4);
 
-
                 if (email.indexOf('@') <= -1) {
-                    alert("Preencha o e-mail corretamente.");
+                    alert("Post: Preencha o e-mail corretamente.");
                 } else if (!nome || !email) {
-                    alert("Preencha corretamente os campos.");
+                    alert("Post: Preencha corretamente os campos.");
                 } else if (!chk.checked) {
-                    alert("Confirme o recebimento do conteúdo exclusivo.");
+                    alert("Post: Confirme o recebimento do conteúdo exclusivo.");
                 }
                 else {
                     PageMethods.gravarEmail(nome, email, idPost, onSucess, onError);

@@ -76,13 +76,13 @@ namespace Organizese.src {
         protected global::System.Web.UI.ScriptManager ScriptManagerPad;
         
         /// <summary>
-        /// pnlPopUp control.
+        /// pnlPopUpHome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlPopUp;
+        protected global::System.Web.UI.WebControls.Panel pnlPopUpHome;
         
         /// <summary>
         /// cmdFechar control.
@@ -103,12 +103,12 @@ namespace Organizese.src {
         protected global::System.Web.UI.WebControls.Label lblTeste;
         
         /// <summary>
-        /// modalPopUpEmail control.
+        /// modalPopUpEmailHome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender modalPopUpEmail;
+        protected global::AjaxControlToolkit.ModalPopupExtender modalPopUpEmailHome;
     }
 }

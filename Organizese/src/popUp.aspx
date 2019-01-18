@@ -9,22 +9,22 @@
 
         <p style="font-weight: bold; color: #fff" class="txtPop">Preencha as informações abaixo e tenha acesso aos nossos conteúdos exclusivos</p>
         &nbsp
-                    <input type="text" id="txtName" class="form-control txtPop" placeholder="Nome..." />
+                    <input type="text" id="txtNamePop" class="form-control txtPop" placeholder="Nome..." />
         &nbsp
                     &nbsp
                     &nbsp
-                    <input type="text" id="txtMail" class="form-control txtPop" placeholder="E-mail..." />
+                    <input type="text" id="txtMailPop" class="form-control txtPop" placeholder="E-mail..." />
         &nbsp
                     &nbsp
                     <div>
-                        <input type="checkbox" id="chkOk" class="form-check-label" style="color: #fff;" /><span style="color: #fff">Aceito receber o conteúdo exclusivo</span>
+                        <input type="checkbox" id="chkOkPop" class="form-check-label" style="color: #fff;" /><span style="color: #fff">Aceito receber o conteúdo exclusivo</span>
                         <br />
                         <br />
-                        <p id="lblMsgRetorno" style="color: #00ff00"></p>
+                        <p id="lblMsgRetornoPop" style="color: #00ff00"></p>
                     </div>
         &nbsp &nbsp   
         <div id="divBtn">
-            <input type="button" id="btnOrganizador" value="Baixe seu Planejador!" class="btn btn-primary " style="width: 170px;" onclick="validaCadastro()" />
+            <input type="button" id="btnOrganizador" value="Baixe seu Planejador!" class="btn btn-primary " style="width: 170px;" onclick="validaCadastroPop()" />
         </div>
         &nbsp &nbsp &nbsp
                     <img src="img/logo.png" class="logoPopUp" />
@@ -47,11 +47,11 @@
 
 
 
-                             function validaCadastro() {
+                             function validaCadastroPop() {
 
-                                 var nome = document.getElementById('txtName').value;
-                                 var email = document.getElementById('txtMail').value;
-                                 var chk = document.getElementById('chkOk');
+                                 var nome = document.getElementById('txtNamePop').value;
+                                 var email = document.getElementById('txtMailPop').value;
+                                 var chk = document.getElementById('chkOkPop');
 
                                  if (email.indexOf('@') <= -1) {
                                      alert("Preencha o e-mail corretamente.");

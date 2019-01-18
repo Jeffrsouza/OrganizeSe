@@ -374,6 +374,9 @@ namespace Organizese.src
 
         public bool gravarListaEmail(string nome, string email,string idPostsCad)
         {
+            int idPosts = 0;
+            try {idPosts = Convert.ToInt32(idPostsCad);} catch{idPosts = 0;}
+
             bool ok = false;
             int id = proxid("USUARIOS");
             DateTime data = DateTime.Now;
@@ -381,7 +384,7 @@ namespace Organizese.src
             {
                 MySqlCommand query = new MySqlCommand
                     (" INSERT INTO USUARIOS (ID, NOME, EMAIL, TIPO, DTCAD, IDPOSTSCAD ) VALUES "
-                    + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "','"+ idPostsCad+"')"
+                    + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "','"+ idPosts+"')"
                     , connection);
 
                 connection.Open();

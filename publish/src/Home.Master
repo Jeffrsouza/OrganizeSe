@@ -78,7 +78,7 @@
             <div class="divRight">
                 <div class="divRightHome">
                     <asp:Image ID="imgRight" runat="server" src="img/imgRight.jpg" class="imgRight" />
-                    <a href="javascript:$find(`modalPopUpEmail`).show();">
+                    <a href="javascript:$find(`modalPopUpEmailHome`).show();">
                         <img id="imgBtnPop" class="imgBtnPop" src="img/inscrevase.png" />
                     </a>
                 </div>
@@ -103,28 +103,28 @@
         <div class="separador"></div>
         <asp:ScriptManager ID="ScriptManagerPad" runat="server" EnablePageMethods='true'></asp:ScriptManager>
 
-        <asp:Panel ID="pnlPopUp" Style="display: none;" runat="server">
+        <asp:Panel ID="pnlPopUpHome" Style="display: none;" runat="server">
             <div style="display: flex; flex-direction: row" class="modalPopUp">
                 <div class="divPopUp">
                     &nbsp
                     <p style="font-weight: bold; color: #fff" class="txtPop">Preencha as informações abaixo e tenha acesso aos nossos conteúdos exclusivos</p>
                     &nbsp
-                    <input type="text" id="txtName" class="form-control txtPop" placeholder="Nome..." />
+                    <input type="text" id="txtNameHome" class="form-control txtPop" placeholder="Nome..." />
                     &nbsp
                     &nbsp
                     &nbsp
-                    <input type="text" id="txtMail" class="form-control txtPop" placeholder="E-mail..." />
+                    <input type="text" id="txtMailHome" class="form-control txtPop" placeholder="E-mail..." />
                     &nbsp
                     &nbsp
                     <div>
-                        <input type="checkbox" id="chkOk" class="form-check-label" style="color: #fff;" /><span style="color: #fff">Aceito receber o conteúdo exclusivo</span>
+                        <input type="checkbox" id="chkOkHome" class="form-check-label" style="color: #fff;" /><span style="color: #fff">Aceito receber o conteúdo exclusivo</span>
                         <br />
                         <br />
-                        <p id="lblMsgRetorno" style="color: #00ff00"></p>
+                        <p id="lblMsgRetornoHome" style="color: #00ff00"></p>
                     </div>
                     &nbsp
                     &nbsp                  
-                    <input type="button" id="btnConfirma" value="Confirmar" class="btn btn-primary " style="width: 120px" onclick="validaCadastro()" />
+                    <input type="button" id="btnConfirmaHome" value="Confirmar" class="btn btn-primary " style="width: 120px" onclick="validaCadastroHome()" />
                     &nbsp
                     &nbsp
                     &nbsp
@@ -140,11 +140,11 @@
 
         <asp:Label ID="lblTeste" runat="server"></asp:Label>
 
-        <asp:ModalPopupExtender ID="modalPopUpEmail" runat="server"
-            BehaviorID="modalPopUpEmail"
+        <asp:ModalPopupExtender ID="modalPopUpEmailHome" runat="server"
+            BehaviorID="modalPopUpEmailHome"
             BackgroundCssClass="modalBackground"
             CancelControlID="cmdFechar"
-            PopupControlID="pnlPopUp" PopupDragHandleControlID="panel3"
+            PopupControlID="pnlPopUpHome" PopupDragHandleControlID="panel3"
             TargetControlID="lblTeste">
         </asp:ModalPopupExtender>
 
@@ -162,14 +162,32 @@
                 //$find("modalPopUpEmail").show();
             }, 8000);
         });
+        function validaCadastroHome() {
 
-        function gravaAcesso() {
-            PageMethods.gravarVisista(onSucess, onError);
+            var nome = document.getElementById('txtNameHome').value;
+            var email = document.getElementById('txtMailHome').value;
+            var chk = document.getElementById('chkOkHome');
 
-            function onSucess(result) {
+            var wl = window.location.href;
+            var idPost = wl.substring(wl.indexOf("?id=") + 4);
+
+            if (email.indexOf('@') <= -1) {
+                alert("Home: Preencha o e-mail corretamente.");
+            } else if (!nome || !email) {
+                alert("Home: Preencha corretamente os campos.");
+            } else if (!chk.checked) {
+                alert("Home: Confirme o recebimento do conteúdo exclusivo.");
             }
+            else {
+                PageMethods.gravarEmail(nome, email, idPost, onSucess, onError);
 
-            function onError(result) {
+                function onSucess(result) {
+                    lblMsgRetornoHome.innerHTML = "E-mail cadastrado com sucesso!";
+                }
+
+                function onError(result) {
+                    lblMsgRetornoHome.innerHTML = 'Erro ao cadastrar, por favor tente novamente.';
+                }
             }
         }
     </script>
