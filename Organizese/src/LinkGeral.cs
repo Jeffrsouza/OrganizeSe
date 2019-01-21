@@ -35,10 +35,10 @@ namespace Organizese.src
         }
 
         //local
-        //private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
+        private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
         
         //Produção
-        private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
+        //private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
 
         MySqlConnection connection = new MySqlConnection(connString);
 
@@ -429,6 +429,82 @@ namespace Organizese.src
             try
             {
                 MySqlCommand query = new MySqlCommand(" INSERT INTO USUARIOS (ID, NOME, EMAIL) VALUES ('" + id + "','" + nome + "','" + email + "');", connection);
+                connection.Open();
+                query.ExecuteNonQuery();
+                connection.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                return false;
+            }
+        }
+
+        public DataTable getEmails()
+        {
+            DataTable dtRetorno = new DataTable();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(String));
+            dt.Columns.Add("NOME", typeof(String));
+            dt.Columns.Add("EMAIL", typeof(String));
+            dt.Columns.Add("DATA", typeof(String));
+            dt.Columns.Add("TIPO", typeof(String));
+            dt.Columns.Add("ID_POST", typeof(String));
+            dt.Columns.Add("LINK", typeof(String));
+            dt.Columns.Add("TITULO", typeof(String));
+
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(
+                    " SELECT " +
+                    "    US.ID, US.NOME,US.EMAIL, DATE_FORMAT(US.DTCAD,'%d/%m/%Y') AS DATA, US.TIPO,US.IDPOSTSCAD " +
+                    "    , NULL AS LINK, P.TITULO " +
+                    "FROM " +
+                    "   USUARIOS US " +
+                    "   LEFT JOIN POSTS P " +
+                    "   ON P.ID=US.IDPOSTSCAD " +
+                    "   ORDER BY US.ID DESC "
+                    , connection);
+                dtRetorno.Load(query.ExecuteReader());
+
+                if (dtRetorno.Rows.Count > 0 && dtRetorno != null)
+                {
+                    for (int i = 0; i < dtRetorno.Rows.Count; i++)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = dtRetorno.Rows[i]["ID"];
+                        dr[1] = dtRetorno.Rows[i]["NOME"];
+                        dr[2] = dtRetorno.Rows[i]["EMAIL"];
+                        dr[3] = dtRetorno.Rows[i]["DATA"];
+                        dr[4] = dtRetorno.Rows[i]["TIPO"];
+                        dr[5] = dtRetorno.Rows[i]["IDPOSTSCAD"];
+                        dr[6] = "http://www.organizeseop.com.br/src/unsubscribe.aspx?id="+criptId(dtRetorno.Rows[i]["ID"].ToString(), true);
+                        dr[7] = dtRetorno.Rows[i]["TITULO"];
+                        dt.Rows.Add(dr);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // lblText.Text = "Catch " + ex.Message;
+                dt.Clear();
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
+        public bool cancelaEmail(string id)
+        {
+            try
+            {
+                MySqlCommand query = new MySqlCommand(
+                    " UPDATE USUARIOS SET TIPO = 'C' WHERE ID = "+criptId(id,false)
+                    , connection);
                 connection.Open();
                 query.ExecuteNonQuery();
                 connection.Close();

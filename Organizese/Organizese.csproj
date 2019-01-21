@@ -128,6 +128,7 @@
     <Content Include="src\bootstrap\js\bootstrap.bundle.min.js.map" />
     <Content Include="src\bootstrap\js\bootstrap.js.map" />
     <Content Include="src\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="src\ControlPanel.aspx" />
     <Content Include="src\external\google-code-prettify\lang-apollo.js" />
     <Content Include="src\external\google-code-prettify\lang-basic.js" />
     <Content Include="src\external\google-code-prettify\lang-clj.js" />
@@ -208,6 +209,7 @@
     <Content Include="src\styles\NewPost.css" />
     <Content Include="src\styles\style.css" />
     <Content Include="src\TextArea.html" />
+    <Content Include="src\Unsubscribe.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +220,13 @@
     </Compile>
     <Compile Include="src\blog.aspx.designer.cs">
       <DependentUpon>blog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\ControlPanel.aspx.cs">
+      <DependentUpon>ControlPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\ControlPanel.aspx.designer.cs">
+      <DependentUpon>ControlPanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="src\Home.Master.cs">
       <DependentUpon>Home.Master</DependentUpon>
@@ -247,6 +256,13 @@
     </Compile>
     <Compile Include="src\popUp.aspx.designer.cs">
       <DependentUpon>popUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\Unsubscribe.aspx.cs">
+      <DependentUpon>Unsubscribe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\Unsubscribe.aspx.designer.cs">
+      <DependentUpon>Unsubscribe.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
