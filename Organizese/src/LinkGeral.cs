@@ -35,10 +35,10 @@ namespace Organizese.src
         }
 
         //local
-        private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
+        //private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
         
         //Produção
-        //private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
+        private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
 
         MySqlConnection connection = new MySqlConnection(connString);
 
@@ -385,6 +385,34 @@ namespace Organizese.src
                 MySqlCommand query = new MySqlCommand
                     (" INSERT INTO USUARIOS (ID, NOME, EMAIL, TIPO, DTCAD, IDPOSTSCAD ) VALUES "
                     + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "','"+ idPosts+"')"
+                    , connection);
+
+                connection.Open();
+                query.ExecuteNonQuery();
+                connection.Close();
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                ok = false;
+            }
+            return ok;
+        }
+
+        public bool gravarListaEmailPromo(string nome, string email, string idPostsCad)
+        {
+            int idPosts = 0;
+            try { idPosts = Convert.ToInt32(idPostsCad); } catch { idPosts = 0; }
+
+            bool ok = false;
+            int id = proxid("USUARIOS");
+            DateTime data = DateTime.Now;
+            try
+            {
+                MySqlCommand query = new MySqlCommand
+                    (" INSERT INTO USUARIOS (ID, NOME, EMAIL, TIPO, DTCAD, IDPOSTSCAD ) VALUES "
+                    + "('" + id + "','" + nome + "','" + email + "','M','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "','" + idPosts + "')"
                     , connection);
 
                 connection.Open();

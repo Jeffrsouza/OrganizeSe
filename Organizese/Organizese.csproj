@@ -206,6 +206,7 @@
     <Content Include="src\js\functions.js" />
     <Content Include="src\NewPost.aspx" />
     <Content Include="src\popUp.aspx" />
+    <Content Include="src\Promocional.aspx" />
     <Content Include="src\styles\NewPost.css" />
     <Content Include="src\styles\style.css" />
     <Content Include="src\TextArea.html" />
@@ -256,6 +257,13 @@
     </Compile>
     <Compile Include="src\popUp.aspx.designer.cs">
       <DependentUpon>popUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\Promocional.aspx.cs">
+      <DependentUpon>Promocional.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\Promocional.aspx.designer.cs">
+      <DependentUpon>Promocional.aspx</DependentUpon>
     </Compile>
     <Compile Include="src\Unsubscribe.aspx.cs">
       <DependentUpon>Unsubscribe.aspx</DependentUpon>
