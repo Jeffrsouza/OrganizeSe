@@ -35,10 +35,10 @@ namespace Organizese.src
         }
 
         //local
-        //private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
+        private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
         
         //Produção
-        private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
+        //private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
 
         MySqlConnection connection = new MySqlConnection(connString);
 
@@ -400,6 +400,31 @@ namespace Organizese.src
             return ok;
         }
 
+        public bool gravarListaEmailDiv(string nome, string email, string origem)
+        {
+            bool ok = false;
+            int id = proxid("USUARIOS");
+            DateTime data = DateTime.Now;
+            try
+            {
+                MySqlCommand query = new MySqlCommand
+                    (" INSERT INTO USUARIOS (ID, NOME, EMAIL, TIPO, DTCAD, IDPOSTSCAD, ORIGEM ) VALUES "
+                    + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "','0','"+ origem + "')"
+                    , connection);
+
+                connection.Open();
+                query.ExecuteNonQuery();
+                connection.Close();
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                ok = false;
+            }
+            return ok;
+        }
+
         public bool gravarListaEmailPromo(string nome, string email, string idPostsCad)
         {
             int idPosts = 0;
@@ -481,6 +506,7 @@ namespace Organizese.src
             dt.Columns.Add("ID_POST", typeof(String));
             dt.Columns.Add("LINK", typeof(String));
             dt.Columns.Add("TITULO", typeof(String));
+            dt.Columns.Add("ORIGEM", typeof(String));
 
             try
             {
@@ -488,7 +514,7 @@ namespace Organizese.src
                 MySqlCommand query = new MySqlCommand(
                     " SELECT " +
                     "    US.ID, US.NOME,US.EMAIL, DATE_FORMAT(US.DTCAD,'%d/%m/%Y') AS DATA, US.TIPO,US.IDPOSTSCAD " +
-                    "    , NULL AS LINK, P.TITULO " +
+                    "    , NULL AS LINK, P.TITULO, US.ORIGEM " +
                     "FROM " +
                     "   USUARIOS US " +
                     "   LEFT JOIN POSTS P " +
@@ -510,6 +536,7 @@ namespace Organizese.src
                         dr[5] = dtRetorno.Rows[i]["IDPOSTSCAD"];
                         dr[6] = "http://www.organizeseop.com.br/src/unsubscribe.aspx?id="+criptId(dtRetorno.Rows[i]["ID"].ToString(), true);
                         dr[7] = dtRetorno.Rows[i]["TITULO"];
+                        dr[8] = dtRetorno.Rows[i]["ORIGEM"];
                         dt.Rows.Add(dr);
                     }
                 }

@@ -49,7 +49,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/26/2018 06:42:22</publishTime>
     </File>
     <File Include="bin/Organizese.dll">
-      <publishTime>01/22/2019 11:52:36</publishTime>
+      <publishTime>02/01/2019 08:47:30</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 19:19:46</publishTime>
@@ -177,6 +177,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="src/ControlPanel.aspx">
       <publishTime>01/21/2019 15:00:41</publishTime>
     </File>
+    <File Include="src/ebook01.aspx">
+      <publishTime>02/01/2019 08:37:33</publishTime>
+    </File>
     <File Include="src/external/google-code-prettify/lang-apollo.js">
       <publishTime>01/02/2019 13:43:30</publishTime>
     </File>
@@ -274,7 +277,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/02/2019 13:43:22</publishTime>
     </File>
     <File Include="src/Home.Master">
-      <publishTime>01/18/2019 15:45:18</publishTime>
+      <publishTime>01/31/2019 09:55:07</publishTime>
     </File>
     <File Include="src/img/btnStart.png">
       <publishTime>01/16/2019 10:45:34</publishTime>
@@ -301,7 +304,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/09/2019 10:22:52</publishTime>
     </File>
     <File Include="src/img/imgRight.jpg">
-      <publishTime>01/17/2019 17:29:21</publishTime>
+      <publishTime>01/31/2019 09:52:47</publishTime>
     </File>
     <File Include="src/img/imgRodape.jpg">
       <publishTime>01/16/2019 11:13:16</publishTime>

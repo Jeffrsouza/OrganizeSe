@@ -1,0 +1,38 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ControlPanel.master.cs" Inherits="Organizese.src.ControlPanel1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <input type="button" value="Inscritos" onclick="redirect('ControlPanel')"/>
+    <input type="button" value="Mail" onclick="redirect('SendMail')"/>
+    <input type="button" value="Inscritos" onclick="redirect('ControlPanel')"/>
+    <input type="button" value="Inscritos" onclick="redirect('ControlPanel')"/>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+
+          <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+     function redirect(page)
+    {
+    var url = "http://www.organizeseop.com.br/src/"+page+".aspx";
+    window.location=url;
+    }
+    </script>
+</body>
+
+</html>

@@ -129,6 +129,8 @@
     <Content Include="src\bootstrap\js\bootstrap.js.map" />
     <Content Include="src\bootstrap\js\bootstrap.min.js.map" />
     <Content Include="src\ControlPanel.aspx" />
+    <Content Include="src\ControlPanel_old.aspx" />
+    <Content Include="src\ebook01.aspx" />
     <Content Include="src\external\google-code-prettify\lang-apollo.js" />
     <Content Include="src\external\google-code-prettify\lang-basic.js" />
     <Content Include="src\external\google-code-prettify\lang-clj.js" />
@@ -163,6 +165,7 @@
     <Content Include="src\external\jquery.hotkeys.js" />
     <Content Include="src\Home.Master" />
     <None Include="Properties\PublishProfiles\NewProfile.pubxml" />
+    <Content Include="src\ControlPanel.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -200,6 +203,7 @@
     <Content Include="src\img\imgLogo.png" />
     <Content Include="src\img\plus.png" />
     <Content Include="src\img\snap.png" />
+    <Content Include="src\img\testeEmail.jpg" />
     <Content Include="src\img\twitter.png" />
     <Content Include="src\img\youtube.png" />
     <Content Include="src\index.aspx" />
@@ -207,6 +211,7 @@
     <Content Include="src\NewPost.aspx" />
     <Content Include="src\popUp.aspx" />
     <Content Include="src\Promocional.aspx" />
+    <Content Include="src\SendMail.aspx" />
     <Content Include="src\styles\NewPost.css" />
     <Content Include="src\styles\style.css" />
     <Content Include="src\TextArea.html" />
@@ -228,6 +233,27 @@
     </Compile>
     <Compile Include="src\ControlPanel.aspx.designer.cs">
       <DependentUpon>ControlPanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\ControlPanel_old.aspx.cs">
+      <DependentUpon>ControlPanel_old.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\ControlPanel_old.aspx.designer.cs">
+      <DependentUpon>ControlPanel_old.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\ControlPanel.Master.cs">
+      <DependentUpon>ControlPanel.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\ControlPanel.Master.designer.cs">
+      <DependentUpon>ControlPanel.Master</DependentUpon>
+    </Compile>
+    <Compile Include="src\ebook01.aspx.cs">
+      <DependentUpon>ebook01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\ebook01.aspx.designer.cs">
+      <DependentUpon>ebook01.aspx</DependentUpon>
     </Compile>
     <Compile Include="src\Home.Master.cs">
       <DependentUpon>Home.Master</DependentUpon>
@@ -264,6 +290,13 @@
     </Compile>
     <Compile Include="src\Promocional.aspx.designer.cs">
       <DependentUpon>Promocional.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\SendMail.aspx.cs">
+      <DependentUpon>SendMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\SendMail.aspx.designer.cs">
+      <DependentUpon>SendMail.aspx</DependentUpon>
     </Compile>
     <Compile Include="src\Unsubscribe.aspx.cs">
       <DependentUpon>Unsubscribe.aspx</DependentUpon>

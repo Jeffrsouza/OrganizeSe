@@ -1,22 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ControlPanel.aspx.cs" Inherits="Organizese.src.ControlPanel" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Painel de Controle</title>
-
-      <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
-
-    <!-- Bootstrap CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Styles CSS -->
-    <link href="styles/style.css" rel="stylesheet" />
-</head>
-<body>
-    <form id="form1" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/src/ControlPanel.Master" AutoEventWireup="true" CodeBehind="ControlPanel.aspx.cs" Inherits="Organizese.src.ControlPanel2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="margin:20px">
         <div>
         <p>
@@ -32,13 +17,4 @@
                 
     </asp:GridView>
     </div>
-    </form>
-
-      <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="bootstrap/js/popper.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-</body>
-</html>
+</asp:Content>
