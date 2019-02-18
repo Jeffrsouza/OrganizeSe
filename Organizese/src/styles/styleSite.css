@@ -1,0 +1,148 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+.links {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    display: flex;
+}
+
+    .links label {
+        padding: 10px;
+        flex-grow: 1;
+        cursor: pointer;
+        transition: all .4s;
+        text-align: center;
+        font-family: Arial;
+        font-size: 100%;
+        color: #fff;
+    }
+
+        .links label:hover {
+            background-color: rgba(255,255,255,.2);
+        }
+
+    .links a {
+        padding: 10px;
+        flex-grow: 1;
+        cursor: pointer;
+        transition: all .4s;
+        text-align: center;
+        text-decoration: none;
+        font-family: Arial;
+        font-size: 100%;
+        color: #fff;
+    }
+
+        .links a:hover {
+            background-color: rgba(255,255,255,.2);
+        }
+
+.progress {
+    padding-top:50px;
+    width: 100%;
+    height: 10px;
+    position: fixed;
+    display: flex;
+}
+
+.divProgress {
+   
+    height: 3px;
+    background-color: lime;
+}
+
+.scroll input {
+    display: none;
+}
+
+.bloco {
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#stHome {
+    background-color: #0094ff;
+}
+
+#stSobre {
+    background-color: #b6ff00;
+}
+
+#stLoja {
+    background-color: #ff6a00;
+}
+
+#stBlog {
+    background-color: #ff00dc;
+}
+
+#stPlanos {
+    background-color: #00ff90;
+}
+
+#stJuntos {
+    background-color: #ff0000;
+}
+
+#stContato {
+    background-color: #808080;
+}
+
+.scroll {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.sections {
+    transition: all .4s;
+}
+
+#rbSobre:checked ~ .sections {
+    margin-top: -100vh;
+}
+
+#rbLoja:checked ~ .sections {
+    margin-top: -200vh;
+}
+
+#rbBlog:checked ~ .sections {
+    margin-top: -300vh;
+}
+
+#rbPlanos:checked ~ .sections {
+    margin-top: -400vh;
+}
+
+#rbJuntos:checked ~ .sections {
+    margin-top: -500vh;
+}
+
+#rbContato:checked ~ .sections {
+    margin-top: -600vh;
+}
+
+.blogPosts {
+    display: flex;
+    flex-direction: row;
+}
+
+.listBlog {
+    width: 20%;
+    height: 80%;
+    border-width: 5px;
+    border-color: red;
+    border-style: double;
+}
+
+.imgBlog {
+    width: 18%;
+    height: 60%;
+}

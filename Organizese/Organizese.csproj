@@ -166,6 +166,8 @@
     <Content Include="src\Home.Master" />
     <None Include="Properties\PublishProfiles\NewProfile.pubxml" />
     <Content Include="src\ControlPanel.Master" />
+    <Content Include="src\website\Home.aspx" />
+    <Content Include="src\website\WebSite.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -214,6 +216,7 @@
     <Content Include="src\SendMail.aspx" />
     <Content Include="src\styles\NewPost.css" />
     <Content Include="src\styles\style.css" />
+    <Content Include="src\styles\styleSite.css" />
     <Content Include="src\TextArea.html" />
     <Content Include="src\Unsubscribe.aspx" />
     <Content Include="Web.config" />
@@ -304,6 +307,20 @@
     </Compile>
     <Compile Include="src\Unsubscribe.aspx.designer.cs">
       <DependentUpon>Unsubscribe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\website\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\website\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\website\WebSite.Master.cs">
+      <DependentUpon>WebSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\website\WebSite.Master.designer.cs">
+      <DependentUpon>WebSite.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
