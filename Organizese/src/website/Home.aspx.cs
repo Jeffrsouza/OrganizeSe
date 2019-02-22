@@ -15,7 +15,7 @@ namespace Organizese.src.website
             if (!Page.IsPostBack)
             {
                 LinkGeral lnk = new LinkGeral();
-                DataTable dtBlog = lnk.PostsSecundarios();
+                DataTable dtBlog = lnk.GetPosts();
                 rptBlog.DataSource = dtBlog;
                 rptBlog.DataBind();
             }

@@ -41,8 +41,8 @@
                                         <span runat="server"><%#Eval("CATEGORIA")%></span>
                                     </div>
                                     <a href="index.aspx?id=<%# Eval("ID") %>">
-                                        <asp:Image runat="server" src='<%# "data:image/png;base64,"+ Eval("ARQUIVO") %>' class="imgBlog" />
-                                        <p class="subTitle"><%# Eval("TITULO") %></p>
+                                        <asp:Image runat="server" src='<%# "data:image/png;base64,"+ Eval("ARQUIVO") %>' class="imgBlog" /><br/>
+                                        <asp:Label runat="server"  class="subTitle"><%# Eval("TITULO").ToString().Length > 120 ? (Eval("TITULO").ToString().Substring(0, 120) + "...") : Eval("TITULO") %></asp:Label>
                                     </a>
                                 </div>
                             </ItemTemplate>

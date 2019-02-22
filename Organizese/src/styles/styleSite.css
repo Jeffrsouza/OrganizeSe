@@ -42,7 +42,7 @@
         }
 
 .progress {
-    padding-top:50px;
+    padding-top: 50px;
     width: 100%;
     height: 10px;
     position: fixed;
@@ -50,7 +50,6 @@
 }
 
 .divProgress {
-   
     height: 3px;
     background-color: lime;
 }
@@ -135,14 +134,28 @@
 }
 
 .listBlog {
-    width: 20%;
+    width: 33%;
     height: 80%;
-    border-width: 5px;
-    border-color: red;
-    border-style: double;
+    margin: 7px 7px 7px 7px;
 }
 
 .imgBlog {
-    width: 18%;
-    height: 60%;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 600px) {
+
+    .blogPosts {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .listBlog {
+        width: 80%;
+        height: 30%;
+    }
 }

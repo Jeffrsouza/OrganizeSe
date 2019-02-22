@@ -35,7 +35,7 @@ namespace Organizese.src
         }
 
         //local
-        private static string connString = "Database = ogsql; Data Source = localhost; Port = 3306;User Id = root; Password = Kant1010";
+        private static string connString = "Database = ogsql; Server = localhost; Port = 3306;User Id = root; Password = Kant1010";
         
         //Produção
         //private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
@@ -589,5 +589,39 @@ namespace Organizese.src
             return retorno;
         }
 
+        #region Métodos do Site
+        public DataTable GetPosts()
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(
+                    " SELECT " +
+                    "    P.ID, P.TEXTO,P.TITULO, DATE_FORMAT(P.DATA,'%d/%m/%Y') AS DATAPOST, P.CATEGORIA, " +
+                    "    IMG.NOME, CONVERT(IMG.ARQUIVO USING utf8) AS ARQUIVO " +
+                    " FROM " +
+                    "   POSTS P " +
+                    "   LEFT JOIN IMG ON IMG.IDPOSTS = P.ID " +
+                    " WHERE P.ID < (SELECT MAX(ID) FROM POSTS) " +
+                    " ORDER BY DATA DESC, ID DESC "+
+                    " LIMIT 3"
+                    , connection);
+                dt.Load(query.ExecuteReader());
+
+            }
+            catch (Exception ex)
+            {
+                // lblText.Text = "Catch " + ex.Message;
+                dt.Clear();
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+        #endregion
     }
 }
