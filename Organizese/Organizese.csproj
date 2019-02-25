@@ -166,8 +166,56 @@
     <Content Include="src\Home.Master" />
     <None Include="Properties\PublishProfiles\NewProfile.pubxml" />
     <Content Include="src\ControlPanel.Master" />
+    <Content Include="src\img\aboutOg.png" />
+    <Content Include="src\img\fundoSobre.jpg" />
+    <Content Include="src\img\homeOffice.jpg" />
+    <Content Include="src\img\homeTable.jpg" />
+    <Content Include="src\img\icons\corporativo.png" />
+    <Content Include="src\img\icons\crescimento.png" />
+    <Content Include="src\img\icons\estudo.png" />
+    <Content Include="src\img\icons\finan.png" />
+    <Content Include="src\img\icons\grupo.png" />
+    <Content Include="src\img\icons\icon_calc.png" />
+    <Content Include="src\img\icons\icon_desenv.png" />
+    <Content Include="src\img\icons\icon_education.png" />
+    <Content Include="src\img\icons\icon_foco.png" />
+    <Content Include="src\img\icons\notebook.png" />
+    <Content Include="src\lib\animate\animate.css" />
+    <Content Include="src\lib\animate\animate.min.css" />
+    <Content Include="src\lib\bootstrap\css\bootstrap.css" />
+    <Content Include="src\lib\bootstrap\css\bootstrap.min.css" />
+    <Content Include="src\lib\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="src\lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="src\lib\easing\easing.js" />
+    <Content Include="src\lib\easing\easing.min.js" />
+    <Content Include="src\lib\font-awesome\css\font-awesome.css" />
+    <Content Include="src\lib\font-awesome\css\font-awesome.min.css" />
+    <Content Include="src\lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="src\lib\ionicons\css\ionicons.css" />
+    <Content Include="src\lib\ionicons\css\ionicons.min.css" />
+    <Content Include="src\lib\ionicons\fonts\ionicons.svg" />
+    <Content Include="src\lib\jquery\jquery-migrate.min.js" />
+    <Content Include="src\lib\jquery\jquery.min.js" />
+    <Content Include="src\lib\js\main.js" />
+    <Content Include="src\lib\magnific-popup\magnific-popup.css" />
+    <Content Include="src\lib\magnific-popup\magnific-popup.js" />
+    <Content Include="src\lib\magnific-popup\magnific-popup.min.js" />
+    <Content Include="src\lib\superfish\hoverIntent.js" />
+    <Content Include="src\lib\superfish\superfish.js" />
+    <Content Include="src\lib\superfish\superfish.min.js" />
+    <Content Include="src\lib\wow\wow.js" />
+    <Content Include="src\lib\wow\wow.min.js" />
+    <Content Include="src\visitas.aspx" />
     <Content Include="src\website\Home.aspx" />
     <Content Include="src\website\WebSite.Master" />
+    <Content Include="src\lib\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="src\lib\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="src\lib\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="src\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="src\lib\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="src\lib\ionicons\fonts\ionicons.eot" />
+    <Content Include="src\lib\ionicons\fonts\ionicons.ttf" />
+    <Content Include="src\lib\ionicons\fonts\ionicons.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -307,6 +355,13 @@
     </Compile>
     <Compile Include="src\Unsubscribe.aspx.designer.cs">
       <DependentUpon>Unsubscribe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\visitas.aspx.cs">
+      <DependentUpon>visitas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\visitas.aspx.designer.cs">
+      <DependentUpon>visitas.aspx</DependentUpon>
     </Compile>
     <Compile Include="src\website\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

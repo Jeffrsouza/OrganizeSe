@@ -36,7 +36,7 @@ namespace Organizese.src
 
         //local
         private static string connString = "Database = ogsql; Server = localhost; Port = 3306;User Id = root; Password = Kant1010";
-        
+
         //Produção
         //private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
 
@@ -88,7 +88,7 @@ namespace Organizese.src
                     " FROM " +
                     "   POSTS P " +
                     "   LEFT JOIN IMG ON IMG.IDPOSTS = P.ID " +
-                    " WHERE P.ID < (SELECT MAX(ID) FROM POSTS) "+
+                    " WHERE P.ID < (SELECT MAX(ID) FROM POSTS) " +
                     " ORDER BY DATA DESC, ID DESC "
                     , connection);
                 dt.Load(query.ExecuteReader());
@@ -285,7 +285,7 @@ namespace Organizese.src
 
         public string updatePost(int id, string titulo, string texto, DateTime data, string categoria)
         {
-            string ok = string.Empty ;
+            string ok = string.Empty;
 
             try
             {
@@ -337,7 +337,7 @@ namespace Organizese.src
                 DateTime data = DateTime.Now;
                 MySqlCommand query = new MySqlCommand
                     (" INSERT INTO VISITAS (PAGE ,DATA) VALUES "
-                    + "('" + page +"','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "')"
+                    + "('" + page + "','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "')"
                     , connection);
 
                 connection.Open();
@@ -357,14 +357,14 @@ namespace Organizese.src
 
             try
             {
-                MySqlCommand query = new MySqlCommand("SELECT ID FROM USUARIOS WHERE EMAIL='" + tratarStr(email) + "'",connection);
+                MySqlCommand query = new MySqlCommand("SELECT ID FROM USUARIOS WHERE EMAIL='" + tratarStr(email) + "'", connection);
                 connection.Open();
                 dt.Load(query.ExecuteReader());
-                cadastrado = (dt.Rows.Count > 0 && dt != null) ?  true:false;
+                cadastrado = (dt.Rows.Count > 0 && dt != null) ? true : false;
                 connection.Close();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 connection.Close();
                 cadastrado = false;
@@ -372,10 +372,10 @@ namespace Organizese.src
             return cadastrado;
         }
 
-        public bool gravarListaEmail(string nome, string email,string idPostsCad)
+        public bool gravarListaEmail(string nome, string email, string idPostsCad)
         {
             int idPosts = 0;
-            try {idPosts = Convert.ToInt32(idPostsCad);} catch{idPosts = 0;}
+            try { idPosts = Convert.ToInt32(idPostsCad); } catch { idPosts = 0; }
 
             bool ok = false;
             int id = proxid("USUARIOS");
@@ -384,7 +384,7 @@ namespace Organizese.src
             {
                 MySqlCommand query = new MySqlCommand
                     (" INSERT INTO USUARIOS (ID, NOME, EMAIL, TIPO, DTCAD, IDPOSTSCAD ) VALUES "
-                    + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "','"+ idPosts+"')"
+                    + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "','" + idPosts + "')"
                     , connection);
 
                 connection.Open();
@@ -409,7 +409,7 @@ namespace Organizese.src
             {
                 MySqlCommand query = new MySqlCommand
                     (" INSERT INTO USUARIOS (ID, NOME, EMAIL, TIPO, DTCAD, IDPOSTSCAD, ORIGEM ) VALUES "
-                    + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "','0','"+ origem + "')"
+                    + "('" + id + "','" + nome + "','" + email + "','E','" + data.ToString("yyyy-MM-dd HH:mm:ss") + "','0','" + origem + "')"
                     , connection);
 
                 connection.Open();
@@ -459,7 +459,7 @@ namespace Organizese.src
             try
             {
                 MySqlCommand query = new MySqlCommand
-                    (" DELETE FROM IMG WHERE IDPOSTS= " + id + "; DELETE FROM POSTS WHERE ID = " + id+";"
+                    (" DELETE FROM IMG WHERE IDPOSTS= " + id + "; DELETE FROM POSTS WHERE ID = " + id + ";"
                     , connection);
 
                 connection.Open();
@@ -475,7 +475,7 @@ namespace Organizese.src
             return ok;
 
         }
-        
+
         public bool gravarEmail(string nome, string email)
         {
             int id = proxid("USUARIOS");
@@ -534,7 +534,7 @@ namespace Organizese.src
                         dr[3] = dtRetorno.Rows[i]["DATA"];
                         dr[4] = dtRetorno.Rows[i]["TIPO"];
                         dr[5] = dtRetorno.Rows[i]["IDPOSTSCAD"];
-                        dr[6] = "http://www.organizeseop.com.br/src/unsubscribe.aspx?id="+criptId(dtRetorno.Rows[i]["ID"].ToString(), true);
+                        dr[6] = "http://www.organizeseop.com.br/src/unsubscribe.aspx?id=" + criptId(dtRetorno.Rows[i]["ID"].ToString(), true);
                         dr[7] = dtRetorno.Rows[i]["TITULO"];
                         dr[8] = dtRetorno.Rows[i]["ORIGEM"];
                         dt.Rows.Add(dr);
@@ -553,12 +553,34 @@ namespace Organizese.src
             return dt;
         }
 
+        public DataTable getVisitas()
+        {
+            DataTable dtVisitas = new DataTable();
+
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(
+                    "SELECT ID, PAGE , DATA FROM VISITAS ORDER BY ID"
+                    , connection);
+                dtVisitas.Load(query.ExecuteReader());
+
+               
+            }
+            catch (Exception ex)
+            {
+                dtVisitas.Clear();
+            }
+            finally { connection.Close();  }
+            return dtVisitas;
+        }
+
         public bool cancelaEmail(string id)
         {
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                    " UPDATE USUARIOS SET TIPO = 'C' WHERE ID = "+criptId(id,false)
+                    " UPDATE USUARIOS SET TIPO = 'C' WHERE ID = " + criptId(id, false)
                     , connection);
                 connection.Open();
                 query.ExecuteNonQuery();
@@ -575,12 +597,12 @@ namespace Organizese.src
         public string criptId(string id, bool tipo)
         {
             string retorno = "";
-            string[] letras = {"H", "J", "K", "L", "Z", "W", "X", "E", "C", "R","Y", "N", "U", "M", "P", "A", "S", "D", "F", "G" };
+            string[] letras = { "H", "J", "K", "L", "Z", "W", "X", "E", "C", "R", "Y", "N", "U", "M", "P", "A", "S", "D", "F", "G" };
             if (tipo)
             {
                 int index = (Convert.ToInt32(id) * 37);
                 int indexLetra = Convert.ToInt32(index.ToString().Substring(0, 1));
-                retorno = letras[indexLetra] + index.ToString()+ letras[indexLetra+7];
+                retorno = letras[indexLetra] + index.ToString() + letras[indexLetra + 7];
             }
             else
             {
@@ -605,7 +627,7 @@ namespace Organizese.src
                     "   POSTS P " +
                     "   LEFT JOIN IMG ON IMG.IDPOSTS = P.ID " +
                     " WHERE P.ID < (SELECT MAX(ID) FROM POSTS) " +
-                    " ORDER BY DATA DESC, ID DESC "+
+                    " ORDER BY DATA DESC, ID DESC " +
                     " LIMIT 3"
                     , connection);
                 dt.Load(query.ExecuteReader());

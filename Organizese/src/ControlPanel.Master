@@ -9,10 +9,10 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <input type="button" value="Inscritos" onclick="redirect('ControlPanel')"/>
+ <!--   <input type="button" value="Inscritos" onclick="redirect('ControlPanel')"/>
     <input type="button" value="Mail" onclick="redirect('SendMail')"/>
     <input type="button" value="Inscritos" onclick="redirect('ControlPanel')"/>
-    <input type="button" value="Inscritos" onclick="redirect('ControlPanel')"/>
+    <input type="button" value="Inscritos" onclick="redirect('ControlPanel')"/>-->
     <form id="form1" runat="server">
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

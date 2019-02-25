@@ -28,7 +28,6 @@ D:\Jeff\Organizese\Organizese\bin\Microsoft.AI.Web.xml
 D:\Jeff\Organizese\Organizese\bin\Microsoft.AI.WindowsServer.xml
 D:\Jeff\Organizese\Organizese\bin\Microsoft.ApplicationInsights.xml
 D:\Jeff\Organizese\Organizese\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Jeff\Organizese\Organizese\obj\Debug\Organizese.csprojResolveAssemblyReference.cache
 D:\Jeff\Organizese\Organizese\obj\Debug\Organizese.dll
 D:\Jeff\Organizese\Organizese\obj\Debug\Organizese.pdb
 D:\Jeff\Organizese\Organizese\bin\Google.Protobuf.dll
@@ -36,3 +35,4 @@ D:\Jeff\Organizese\Organizese\bin\MySql.Data.dll
 D:\Jeff\Organizese\Organizese\bin\Google.Protobuf.xml
 D:\Jeff\Organizese\Organizese\bin\MySql.Data.xml
 D:\Jeff\Organizese\Organizese\bin\AjaxControlToolkit.dll
+D:\Jeff\OrganizeSe\Organizese\obj\Debug\Organizese.csprojResolveAssemblyReference.cache

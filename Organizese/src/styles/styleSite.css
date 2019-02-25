@@ -4,10 +4,11 @@
 }
 
 .links {
-    width: 100%;
+    width: 100vw;
     height: 50px;
     position: fixed;
     display: flex;
+    z-index: 2;
 }
 
     .links label {
@@ -43,10 +44,19 @@
 
 .progress {
     padding-top: 50px;
-    width: 100%;
+    width: 100vw;
     height: 10px;
     position: fixed;
     display: flex;
+}
+
+.sectionTitle {
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+    background: linear-gradient( 45deg, rgba(126, 188, 230, 0.1), rgba(28, 131, 200, 0.3) );
 }
 
 .divProgress {
@@ -54,24 +64,44 @@
     background-color: lime;
 }
 
-.scroll input {
-    display: none;
-}
 
 .bloco {
     width: 100vw;
     height: 100vh;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
     display: flex;
+    flex-direction: column;
 }
 
 #stHome {
-    background-color: #0094ff;
+    padding-top: 60px;
+    /*background-color: #0094ff;*/
+    width: 100vw;
+    height: 100vh;
+    background:
+    /*linear-gradient(
+      45deg,
+      rgba(126, 188, 230, 0.8),
+      rgba(28, 131, 200, 0.8)
+    ),*/
+    url("../img/homeTable.jpg") center top no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
 }
 
+
 #stSobre {
-    background-color: #b6ff00;
+    padding-top: 60px;
+    /*background-color: #0094ff;*/
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient( 45deg, rgba(126, 188, 230, 0.8), rgba(28, 131, 200, 0.8) ), url("../img/fundoSobre.jpg") center top no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    filter: blur;
 }
 
 #stLoja {
@@ -79,11 +109,14 @@
 }
 
 #stBlog {
+    padding-top: 60px;
     background-color: #ff00dc;
 }
 
 #stPlanos {
-    background-color: #00ff90;
+    padding-top: 60px;
+    background-color: #7FFFD4;
+    /*#00ff90*/
 }
 
 #stJuntos {
@@ -104,46 +137,191 @@
     transition: all .4s;
 }
 
-#rbSobre:checked ~ .sections {
-    margin-top: -100vh;
+.groupIcons {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 100px;
+    text-align: center;
 }
 
-#rbLoja:checked ~ .sections {
-    margin-top: -200vh;
+.iconHome {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 23%;
 }
 
-#rbBlog:checked ~ .sections {
-    margin-top: -300vh;
+.imgIcon {
+    width: 100%;
+    height: auto;
 }
 
-#rbPlanos:checked ~ .sections {
-    margin-top: -400vh;
+.subTitle {
+    font-family: Calibri;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    background: linear-gradient( 45deg, rgba(126, 188, 230, 0.8), rgba(28, 131, 200, 0.8) );
 }
 
-#rbJuntos:checked ~ .sections {
-    margin-top: -500vh;
-}
-
-#rbContato:checked ~ .sections {
-    margin-top: -600vh;
-}
-
+/*Blog*/
 .blogPosts {
     display: flex;
     flex-direction: row;
 }
 
 .listBlog {
-    width: 33%;
+    width: 31.7%;
     height: 80%;
     margin: 7px 7px 7px 7px;
 }
 
 .imgBlog {
     width: 100%;
-    height: auto;
+    height: 40vh;
 }
 
+.divCategoria {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-bottom: 10px;
+}
+
+.divSubCategoria {
+    background-color: #a1a1a1;
+    border-radius: 5px;
+}
+
+.categoria {
+    font-family: Arial;
+    font-size: 20px;
+    margin: 10px 10px 10px 10px;
+}
+
+.titlePost {
+    font-family: Arial;
+    font-size: 20px;
+    text-align: justify;
+}
+
+/*Planos*/
+.sectionTitlePlan {
+    font-family: Arial;
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.groupPlan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 85%;
+}
+
+.planType1 {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 80%;
+    background-color: #ADD8E6;
+    margin-left: 3%;
+    margin-right: 3%;
+    box-shadow: 0 17px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+}
+
+.planType2 {
+    width: 27%;
+    height: 90%;
+    background-color: #ADD8E6;
+    margin-left: 3%;
+    margin-right: 3%;
+    box-shadow: 0 15px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+}
+
+.planType3 {
+    width: 25%;
+    height: 80%;
+    background-color: #ADD8E6;
+    margin-left: 3%;
+    margin-right: 3%;
+    box-shadow: 0 17px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+}
+
+.iconPlano {
+}
+
+.divPlano {
+    width: 100%;
+    height: 85%;
+    margin-left: 30px;
+}
+
+.btnPlano {
+    font-weight: bold;
+    margin-top: 2.5%;
+    width: 60%;
+    height: 10%;
+    background-color: #008CBA;
+    margin-left: 20%;
+    border-radius: 3px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: none;
+    color: white;
+    font-size: 16px;
+}
+
+    .btnPlano:hover {
+        background-color: #E5FFFF;
+        color: #000;
+        border: groove;
+        border-color: #008CBA;
+        cursor: pointer;
+    }
+
+/*Sobre*/
+.about {
+    display: flex;
+    flex-direction: row;
+}
+
+.sectionTitleSobre {
+    color:#fff;
+    font-family: Arial;
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.aboutLeft {
+    width: 50vw;
+    height: 70vh;
+}
+
+.aboutRight {
+    width: 50vw;
+    height: 70vh;
+    font-family: Arial;
+    padding-right: 5px;
+    color: #fff;
+    font-size: 100%;
+    max-height: 70vh;
+}
+
+.imgAbout {
+    width: 70%;
+    height: auto;
+    max-height: 70vh;
+}
+
+/*Mobile/Tela pequena*/
 @media (max-width: 600px) {
 
     .blogPosts {
@@ -157,5 +335,55 @@
     .listBlog {
         width: 80%;
         height: 30%;
+    }
+
+    .groupIcons {
+        width: 100%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 0px;
+        text-align: center;
+        align-items: flex-end;
+    }
+
+    .subTitle {
+        font-size: 100%;
+    }
+
+    /*Sobre*/
+    .about {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aboutLeft {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 0vh;
+        z-index:1;
+    }
+
+    .imgAbout {
+        width: 100%;
+        z-index:2;
+        opacity:0.5;
+    }
+
+    .aboutRight {
+        width: 100%;
+        height: 50vh;
+        font-size: 75%;
+        z-index:5;
+    }
+
+    .sectionTitleSobre {
+        font-size: 200%;
+        height: 1vh;
+        padding-bottom:30px;
     }
 }
