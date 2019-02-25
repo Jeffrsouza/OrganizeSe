@@ -114,38 +114,45 @@
                     &nbsp
                     &nbsp
                     <div class="groupPlan">
-
-                        <!--
                         <div class="planType1">
                             <div class="divPlano">
                                 <br />
                                 <br />
-                               <i class="fa fa-check-circle iconPlano"></i> Plano Friends
+                                <p><i class="fa fa-check-circle iconPlano"></i>Plano Mensal</p>
+                                <p>R$ 49,99/mês</p>
+                                <p>Acesso á todo conteúdo exclusivo</p>
+                                <p>APP exclusivo para Android</p>
+                                <p>Acesso á consultoria on-line</p>
+                                <p>Parcelado em até 2x</p>
                             </div>
                             <input type="button" class="btnPlano" value="Contrate Agora!" />
                         </div>
-                            -->
                         <div class="planType2">
                             <div class="divPlano">
+                                 <br />
                                 <br />
-                                <br />
-                                Plano Organizacional
-                                <br />
-                                <br />
-                                R$29,99/mês
+                               <p><i class="fa fa-check-circle iconPlano"></i>Plano Anual</p>
+                                 <p>R$ 29,99/mês</p>
+                                <p>Acesso á todo conteúdo exclusivo</p>
+                                <p>APP exclusivo para Android</p>
+                                <p>Acesso á consultoria on-line</p>
+                                <p>Melhor custo benefício</p>
                             </div>
                             <input type="button" class="btnPlano" value="Contrate Agora!" />
                         </div>
-                        <!--
                             <div class="planType3">
                             <div class="divPlano">
+                                 <br />
                                 <br />
-                                <br />
-                               <i class="fa fa-check-circle iconPlano"></i> Plano Empresarial
+                                <p><i class="fa fa-check-circle iconPlano"></i>Plano Semestral</p>
+                                 <p>R$ 39,99/mês</p>
+                                <p>Acesso á todo conteúdo exclusivo</p>
+                                <p>APP exclusivo para Android</p>
+                                <p>Acesso á consultoria on-line</p>
+                                <p>Melhor custo benefício</p>
                             </div>
                             <input type="button" class="btnPlano" value="Contrate Agora!" />
                         </div>
-                            -->
                     </div>
                 </section>
                 <section class="bloco" id="stJuntos"></section>
