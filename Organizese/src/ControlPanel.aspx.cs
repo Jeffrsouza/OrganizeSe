@@ -18,7 +18,41 @@ namespace Organizese.src
                 DataTable dt = lnk.getEmails();
                 gvDados.DataSource = dt;
                 gvDados.DataBind();
+                carregarMsgChat();
             }
+        }
+
+        protected void timeChat_Tick(object sender, EventArgs e)
+        {
+            carregarMsgChat();
+        }
+        private void carregarMsgChat()
+        {
+            LinkGeral lnk = new LinkGeral();
+            rptMsg.DataSource= lnk.GetMsgChat(1);
+            rptMsg.DataBind();
+
+            //gvProt.DataSource = lnk.GetProtocol();
+            //gvProt.DataBind();
+        }
+
+        protected void gvProt_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            LinkGeral lnk = new LinkGeral();
+            rptMsg.DataSource = lnk.GetMsgChat(1);
+            rptMsg.DataBind();
+        }
+
+        protected void btnEnviar_Click(object sender, EventArgs e)
+        {
+            string mensagem = txtMsg.Text;
+            LinkGeral lnk = new LinkGeral();
+            lnk.gravarMsg(mensagem);
+
+            carregarMsgChat();
+
+            txtMsg.Text=string.Empty;
+
         }
     }
 }

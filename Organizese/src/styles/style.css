@@ -356,6 +356,58 @@
     border-radius: 10px;
 }
 
+.nav_tabs {
+    display: flex;
+    flex-direction: row;
+    background-color: darkblue;
+    position: relative;
+}
+
+.nav_item {
+    width: 100px;
+    height: 50px;
+    background-color: gray;
+    display: block;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+}
+
+.sctChat{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:700px;
+    border:ridge;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.msgChatr{
+    width:100%;
+    padding-left:550px
+}
+.msgChatl{
+    width:100%;
+    padding-left:30px
+}
+.msgChatSend{
+    background: blue;
+    border-radius: 10px;
+    width: 400px;
+    text-align:right;
+}
+
+.msgChatRecive{
+    background: #a1a1a1;
+    border-radius: 10px;
+    width: 400px;
+}
+.divGeral{
+    background-color:aquamarine;
+        display: flex;
+    flex-direction: column;
+    align-items:center;
+}
 @media (max-width: 600px) {
     /*        background-color:rgba(0, 0, 255, 0.7); */
 

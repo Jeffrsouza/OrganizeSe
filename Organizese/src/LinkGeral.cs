@@ -23,6 +23,10 @@ namespace Organizese.src
 
     public class LinkGeral
     {
+        /*
+         * sig_freud    
+         * Freud@1010
+         */
         //Trata a string
         public string tratarStr(string @_varStr)
         {
@@ -35,10 +39,10 @@ namespace Organizese.src
         }
 
         //local
-        private static string connString = "Database = ogsql; Server = localhost; Port = 3306;User Id = root; Password = Kant1010";
+        //private static string connString = "Database = ogsql; Server = localhost; Port = 3306;User Id = root; Password = Kant1010";
 
         //Produção
-        //private static string connString = "Database = ogolap; Data Source = mysql642.umbler.com; Port = 41890;User Id = kant; Password = Ogsql1010";
+        private static string connString = "Database = ogolap; Data Source = ogolap.mysql.uhserver.com; Port = 41890;User Id = sig_freud; Password = Freud@1010";
 
         MySqlConnection connection = new MySqlConnection(connString);
 
@@ -107,6 +111,7 @@ namespace Organizese.src
         }
         #endregion
 
+        #region Varios
         public DataTable Posts()
         {
             DataTable dt = new DataTable();
@@ -565,13 +570,13 @@ namespace Organizese.src
                     , connection);
                 dtVisitas.Load(query.ExecuteReader());
 
-               
+
             }
             catch (Exception ex)
             {
                 dtVisitas.Clear();
             }
-            finally { connection.Close();  }
+            finally { connection.Close(); }
             return dtVisitas;
         }
 
@@ -610,6 +615,7 @@ namespace Organizese.src
             }
             return retorno;
         }
+        #endregion
 
         #region Métodos do Site
         public DataTable GetPosts()
@@ -643,6 +649,130 @@ namespace Organizese.src
                 connection.Close();
             }
             return dt;
+        }
+
+        public bool GravarUsuario(string nome, string sobrenome, string email, string cpf, string senha, string genero, string dtNasc)
+        {
+            bool ok = false;
+            int id = proxid("USUARIOS");
+            try
+            {
+                MySqlCommand query = new MySqlCommand(
+                    " INSERT INTO USUARIOS " +
+                    "   (ID, NOME, SOBRENOME, ENAIL,CPF, SENHA, TIPO, GENERO,DTNASC,DTCAD) " +
+                    " VALUES " +
+                    $"   ('{id}','{tratarStr(nome)}','{tratarStr(sobrenome)}','{tratarStr(email)}','{cpf}','{tratarStr(senha)}','{tratarStr(genero)}','{tratarStr(dtNasc)}','{ DateTime.Now.ToString("yyyy-MM-dd")}')"
+                    , connection);
+                connection.Open();
+                query.ExecuteNonQuery();
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                ok = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return ok;
+        }
+        #endregion
+
+        #region Chat
+        public DataTable GetMsgChat(int idProt)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(
+                    " SELECT " +
+                    "    C.ID, A.NOME AS NOME_ADMIN, " +
+                    "    U.NOME AS NOME_USER, C.MSG,C.TIPOREM, " +
+                    "    DATE_FORMAT(C.DATA,'%H:%i - %d/%m/%Y') AS DATA " +
+                    " FROM " +
+                    "   CHAT C " +
+                    "   INNER JOIN ADMIN A ON A.ID = C.IDADMIN" +
+                    "   INNER JOIN USUARIOS U ON U.ID = C.IDUSER" +
+                    " WHERE 0=0 " +
+                    $"   AND C.IDPROT={idProt}"+ 
+                    " ORDER BY C.ID "
+                    , connection);
+                dt.Load(query.ExecuteReader());
+
+            }
+            catch (Exception ex)
+            {
+                // lblText.Text = "Catch " + ex.Message;
+                dt.Clear();
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
+        public DataTable GetProtocol()
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(
+                    " SELECT " +
+                    "    P.ID, A.NOME AS NOME_ADMIN, " +
+                    "    U.NOME AS NOME_USER,  " +
+                    "    P.EMAIL,  " +
+                    "    DATE_FORMAT(P.DATA_INI,'%H:%i - %d/%m/%Y') AS DATA " +
+                    " FROM " +
+                    "   PROTOCOLO P " +
+                    "   INNER JOIN ADMIN A ON A.ID = P.IDADMIN" +
+                    "   INNER JOIN USUARIOS U ON U.ID = P.IDUSER " +
+                    " WHERE 0=0 " +
+                    " ORDER BY P.ID DESC "
+                    , connection);
+                dt.Load(query.ExecuteReader());
+
+            }
+            catch (Exception ex)
+            {
+                // lblText.Text = "Catch " + ex.Message;
+                dt.Clear();
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
+        public void gravarMsg(string msg)
+        {
+            int id = proxid("CHAT");
+
+            try
+            {
+                MySqlCommand query = new MySqlCommand
+                    (" INSERT INTO CHAT (ID, IDPROT, IDADMIN, IDUSER,MSG, DATA, TIPOREM) VALUES "
+                    + $"('{id}','{1}','{1} ','{1} ','{msg}','{DateTime.Now.ToString("yyyy-MM-dd") }' ,'A')"
+                    , connection);
+
+                connection.Open();
+                query.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
         #endregion
     }
