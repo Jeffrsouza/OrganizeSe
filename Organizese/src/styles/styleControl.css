@@ -1,16 +1,97 @@
 ﻿body {
-    background: linear-gradient( 45deg, rgba(135,206,250, 0.2), rgba(30,144,255, 0.5) ),
-    /* background: linear-gradient( 45deg, rgba(126, 188, 230, 0.1), rgba(28, 131, 200, 0.3) ),*/
-    url("../img/bkgPrc.jpg") center top no-repeat;
-    background-size: cover;
+    background: linear-gradient( 45deg, rgba(135,206,250, 0.2), rgba(30,144,255, 0.5) ), url("../img/bkgPrc.jpg") center top no-repeat;
+    background-size: auto;
     position: relative;
+}
+
+.admin-header {
+    width: 100vw;
+    height: 15vh;
+    background-color: gray;
+    align-items: center;
 }
 
 /*Client*/
 /*Client*/
-
-
 /*Admin*/
+/*Agenda -> */
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(100,100,100,.8)
+}
+
+.divGeral {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    width: 100vw;
+    height: 80vh;
+    align-items: center;
+}
+
+.divLeft {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    height: 82vh;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.divCenter {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    height: 82vh;
+    align-items: center;
+    text-align: center;
+}
+
+.divRight {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    height: 82vh;
+    align-items: center;
+    text-align: center;
+}
+
+.inputData {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.15), 0 6px 6px 0 rgba(0,0,0,0.19);
+    width: 80px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    height: 33px;
+}
+
+.divAgendamentos {
+    background: linear-gradient( 45deg, rgba(135,206,250, 0.2), rgba(30,144,255, 0.5) );
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.15), 0 6px 6px 0 rgba(0,0,0,0.19);
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.divAtendimentos {
+    background: linear-gradient( 45deg, rgba(135,206,250, 0.2), rgba(30,144,255, 0.5) );
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.15), 0 6px 6px 0 rgba(0,0,0,0.19);
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+/*<- Agenda*/
 .nav-btn {
     padding-top: 5px;
 }
@@ -87,34 +168,41 @@
 .btnMsg {
     width: 100px;
 }
+
 /*Caixa de Msg*/
-.msg-header{
-    font-size:20px;
-    font-weight:bold;
+.msg-header {
+    font-size: 20px;
+    font-weight: bold;
 }
+
 .msgChatr {
     text-align: right;
+    margin-left:10%;
 }
 
 .msgChatl {
+    border: none;
+    margin-right: 10%;
+}
+
+.msgChatSend {
+    margin: 15px;
+}
+
+.msgChatRecive {
+    margin: 15px;
 }
 
 .msg-nome {
     font-weight: bold;
 }
 
-.msg-bodyAdmin {
+.msg-bodyChat {
     padding: 0px 7px 0px 7px;
     font-size: 15px;
     background-color: rgba(225,225,225,.5);
     border-radius: 5px;
-}
-
-.msg-bodyClient {
-    padding: 0px 7px 0px 7px;
-    font-size: 15px;
-    background-color: rgba(225,225,225,.5);
-    border-radius: 5px;
+    display: inline-block;
 }
 
 .msg-data {
@@ -128,3 +216,20 @@
 
 /*Admin*/
 
+@media (max-width: 600px) {
+    .divGeral {
+        flex-direction: column;
+    }
+
+    .divLeft {
+        width: 100vw;
+    }
+
+    .divCenter {
+        width: 100vw;
+    }
+
+    .divRight {
+        width: 100vw;
+    }
+}

@@ -5,25 +5,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <!-- Styles CSS -->
+    <link href="../styles/styleControl.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
     <!-- Required meta tags -->
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
     <!-- Bootstrap CSS -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Styles CSS -->
-    <link href="../styles/styleControl.css" rel="stylesheet" />
+
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="div-center">
             <div class="nav-btn">
-                <input type="button" class="btn btn-nav" value="Right" onclick="alterScreen(1)" />
-                <input type="button" class="btn btn-nav" value="Right" onclick="alterScreen(2)" />
-                <input type="button" class="btn btn-nav" value="Right" onclick="alterScreen(3)" />
+                <input type="button" class="btn btn-nav" value="Home" onclick="alterScreen('Home')" />
+                <input type="button" class="btn btn-nav" value="Agenda" onclick="alterScreen('Agenda')" />
+                <input type="button" class="btn btn-nav" value="Chat" onclick="alterScreen('Chat')" />
             </div>
         </div>
         <div class="div-center">
@@ -35,5 +35,10 @@
     <script src="../bootstrap/js/jquery-3.3.1.slim.min.js"></script>
     <script src="../bootstrap/js/popper.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function alterScreen(page) {
+            window.location.href = "http://www.organizeseop.com.br/adminControl/" + page + ".aspx";
+        }
+    </script>
 </body>
 </html>

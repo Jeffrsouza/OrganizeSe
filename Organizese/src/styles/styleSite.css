@@ -125,12 +125,10 @@
     /*#00ff90*/
 }
 
-#stJuntos {
-    background-color: #ff0000;
-}
-
 #stContato {
-    background-color: #808080;
+    z-index: 1;
+    position: relative;
+    background-color: #999;
 }
 
 .scroll {
@@ -175,8 +173,11 @@
 /*Loja*/
 .divLoja {
     display: flex;
-    width: 100%;
-    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
 }
 
 .divLivroLeft {
@@ -185,8 +186,6 @@
     align-items: center;
     width: 50vw;
     height: 70vh;
-    margin-left: 15vw;
-    margin-right: 5vw;
 }
 
 .divLivroRight {
@@ -435,9 +434,10 @@
 .txtLogin {
     margin-top: 5px;
     margin-left: 10px;
+    padding-left: 5px;
     margin-right: 10px;
-    border:none;
-    border-radius:3px;
+    border: none;
+    border-radius: 3px;
     width: 11vw;
 }
 .btnEntrar{
@@ -450,10 +450,27 @@
     cursor:pointer;
 }
 
+/*Contato*/
+
+.titleContato {
+    /*margin-top: 3vh;*/
+    padding-left: 2vw;
+    padding-top: 7vh;
+    width: 100vw;
+    height: 25vh;
+    background-color: rgba(220,220,255,1);
+}
+.divCorpoContato {
+    margin-top: 3vh;
+    width: 100vw;
+    height: 65vh;
+    padding-left: 2vw;
+}
+
+
 /*Mobile/Tela pequena*/
 @media (max-width: 600px) {
     /*Blog*/
-
     #stBlog {
         height: 245vh;
     }

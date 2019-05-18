@@ -45,6 +45,7 @@ namespace Organizese.src
 
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
+            /*
             string mensagem = txtMsg.Text;
             LinkGeral lnk = new LinkGeral();
             lnk.gravarMsg(mensagem);
@@ -52,6 +53,7 @@ namespace Organizese.src
             carregarMsgChat();
 
             txtMsg.Text=string.Empty;
+            */
 
         }
     }

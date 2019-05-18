@@ -40,7 +40,7 @@
                     <ItemTemplate>
                         <div class='<%# Eval("TIPOREM").ToString() =="A" ? "msgChatr": "msgChatl" %>'>
                             <div id='<%# Eval("MSG") %>' class='<%# Eval("TIPOREM").ToString() =="A" ? "msgChatSend": "msgChatRecive" %>'>
-                                <div style="margin: 15px">
+                                <div>
                                     <p><%# Eval("TIPOREM").ToString() == "A"  ?  Eval("NOME_ADMIN") : Eval("NOME_USER") %> :</p>
                                     <p><%# Eval("MSG") %></p>
                                     <p><%# Eval("DATA") %></p>

@@ -23,6 +23,7 @@ namespace Organizese.src
 
     public class LinkGeral
     {
+        #region Conexão
         /*
          * sig_freud    
          * Freud@1010
@@ -42,9 +43,10 @@ namespace Organizese.src
         //private static string connString = "Database = ogsql; Server = localhost; Port = 3306;User Id = root; Password = Kant1010";
 
         //Produção
-        private static string connString = "Database = ogolap; Data Source = ogolap.mysql.uhserver.com; Port = 41890;User Id = sig_freud; Password = Freud@1010";
+        private static string connString = "Database = ogolap; Data Source = ogolap.mysql.uhserver.com; Port = 3306;User Id = sig_freud; Password = Freud@1010";
 
         MySqlConnection connection = new MySqlConnection(connString);
+        #endregion
 
         #region Carrega Page Blog
         public DataTable PostPrincipal()
@@ -677,6 +679,47 @@ namespace Organizese.src
             }
             return ok;
         }
+
+        public string[] Login(string email, string senha)
+        {
+            bool tipo = email.Contains("@") ? true : false;
+            DataTable dt = new DataTable();
+            string[] login = new string[3];
+            string strQuery = string.Empty;
+
+            strQuery = tipo
+                ? $" SELECT ID, NOME FROM USUARIOS WHERE EMAIL = '{tratarStr(email)}' AND SENHA='{tratarStr(senha)}'"
+                : $" SELECT ID, NOME FROM ADMIN WHERE NOME = '{tratarStr(email)}' AND SENHA='{tratarStr(senha)}'";
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(strQuery, connection);
+                dt.Load(query.ExecuteReader());
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        login[0] = dr["ID"].ToString();
+                        login[1] = dr["NOME"].ToString();
+                        login[2] = tipo ? "USUARIO" : "ADMIN";
+                    }
+                }
+                else
+                {
+                    login[0] = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                dt.Clear();
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return login;
+
+        }
         #endregion
 
         #region Chat
@@ -690,14 +733,14 @@ namespace Organizese.src
                 MySqlCommand query = new MySqlCommand(
                     " SELECT " +
                     "    C.ID, A.NOME AS NOME_ADMIN, " +
-                    "    U.NOME AS NOME_USER, C.MSG,C.TIPOREM, " +
+                    "    U.NOME AS NOME_USER, C.MSG, C.TIPO, " +
                     "    DATE_FORMAT(C.DATA,'%H:%i - %d/%m/%Y') AS DATA " +
                     " FROM " +
                     "   CHAT C " +
                     "   INNER JOIN ADMIN A ON A.ID = C.IDADMIN" +
                     "   INNER JOIN USUARIOS U ON U.ID = C.IDUSER" +
                     " WHERE 0=0 " +
-                    $"   AND C.IDPROT={idProt}"+ 
+                    $"   AND C.IDPROT={idProt}" +
                     " ORDER BY C.ID "
                     , connection);
                 dt.Load(query.ExecuteReader());
@@ -750,15 +793,28 @@ namespace Organizese.src
             return dt;
         }
 
-        public void gravarMsg(string msg)
+        public void gravarMsg(string idProt, string msg, string tipo)
         {
             int id = proxid("CHAT");
 
             try
             {
+                string idAdmin = string.Empty;
+                string idUser = string.Empty;
+
+                connection.Open();
+                MySqlCommand qryInfo = new MySqlCommand($" SELECT  IDADMIN, IDUSER FROM PROTOCOLO WHERE ID={idProt}", connection);
+                MySqlDataReader drInfo = qryInfo.ExecuteReader();
+                if (drInfo.Read())
+                {
+                    idAdmin = drInfo["IDADMIN"].ToString();
+                    idUser = drInfo["IDUSER"].ToString();
+                }
+                connection.Close();
+
                 MySqlCommand query = new MySqlCommand
-                    (" INSERT INTO CHAT (ID, IDPROT, IDADMIN, IDUSER,MSG, DATA, TIPOREM) VALUES "
-                    + $"('{id}','{1}','{1} ','{1} ','{msg}','{DateTime.Now.ToString("yyyy-MM-dd") }' ,'A')"
+                    (" INSERT INTO CHAT (ID, IDPROT, IDADMIN, IDUSER, TIPO, MSG, DATA) VALUES "
+                    + $"('{id}','{idProt}','{idAdmin} ','{idUser} ','{tipo}','{msg}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") }')"
                     , connection);
 
                 connection.Open();
@@ -773,6 +829,169 @@ namespace Organizese.src
             {
                 connection.Close();
             }
+        }
+        #endregion
+
+        #region Agenda
+        public bool InserirAgenda(string idAdmin, DateTime data, string hora)
+        {
+            bool ok = false;
+            int id = proxid("AGENDA");
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(
+                    " INSERT INTO AGENDA(ID, DATA, IDADMIN) VALUES " +
+                    $" ({id}, '{data.ToString("yyyy-MM-dd")} {hora}', {idAdmin}) "
+                    , connection);
+                query.ExecuteNonQuery();
+                connection.Close();
+                ok = true;
+
+            }
+            catch (Exception ex)
+            {
+                ok = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return ok;
+        }
+
+        public DataTable CarregarAgenda(string id)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(
+                    " SELECT " +
+                    "   A.ID, A.DATA, A.IDUSER, U.NOME " +
+                    " FROM " +
+                    "   AGENDA A " +
+                    "   LEFT JOIN USUARIOS U ON A.IDUSER = U.ID " +
+                    " WHERE DATA >= NOW() " +
+                   $"   AND A.IDADMIN= '{id}' " +
+                   "ORDER BY A.DATA"
+                   , connection);
+                dt.Load(query.ExecuteReader());
+
+            }
+            catch (Exception ex)
+            {
+                dt.Clear();
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
+        public DataTable CarregarAtendimentos(string id)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand(
+                    " SELECT " +
+                    "   A.ID, A.DATA, A.IDUSER, U.NOME " +
+                    " FROM " +
+                    "   AGENDA A " +
+                    "   LEFT JOIN USUARIOS U ON A.IDUSER = U.ID " +
+                    " WHERE 0=0 " +
+                    //"   AND DATA >= NOW() " +
+                    "   AND A.IDUSER IS NOT NULL " +
+                   $"   AND A.IDADMIN= '{id}' " +
+                    " ORDER BY A.DATA "
+                   , connection);
+                dt.Load(query.ExecuteReader());
+
+            }
+            catch (Exception ex)
+            {
+                dt.Clear();
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+        }
+
+        public bool IniciarAtendimento(string id)
+        {
+            bool ok = false;
+
+            try
+            {
+                connection.Open();
+                MySqlCommand query = new MySqlCommand($" SELECT ID FROM PROTOCOLO WHERE ID ={id}", connection);
+                MySqlDataReader dr = query.ExecuteReader();
+
+                int id_exist = 0;
+                if (dr.Read()) id_exist = Convert.ToInt32(dr["ID"]);
+                connection.Close();
+
+                if (id_exist > 0)
+                {
+                    ok = true;
+                }
+                else
+                {
+                    #region Carrega Dados
+                    string idAdmin = string.Empty;
+                    string idUser = string.Empty;
+                    string email = string.Empty;
+
+                    connection.Open();
+                    MySqlCommand qryLoadId = new MySqlCommand(
+                        " SELECT " +
+                        " 	A.IDADMIN, A.IDUSER, U.EMAIL " +
+                        " FROM AGENDA A " +
+                        " 	INNER JOIN USUARIOS U ON U.ID = A.IDUSER " +
+                        "     INNER JOIN ADMIN AD ON AD.ID = A.IDADMIN " +
+                        " WHERE 0=0 " +
+                       $" 	AND A.ID ={id}"
+                        , connection);
+                    MySqlDataReader drLoadId = qryLoadId.ExecuteReader();
+                    if (drLoadId.Read())
+                    {
+                        idAdmin = drLoadId["IDADMIN"].ToString();
+                        idUser = drLoadId["IDUSER"].ToString();
+                        email = drLoadId["EMAIL"].ToString();
+                    }
+                    connection.Close();
+                    #endregion
+
+                    #region Insert Protocolo        
+
+                    MySqlCommand qryInsert = new MySqlCommand(
+                        " INSERT INTO PROTOCOLO " +
+                        "   (ID, IDADMIN, IDUSER, EMAIL, DATA_INI, STATUS) " +
+                        " VALUES " +
+                       $"   ('{proxid("PROTOCOLO")}','{idAdmin}','{idUser}','{email}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}','A');"
+                        , connection);
+                    connection.Open();
+                    qryInsert.ExecuteNonQuery();
+                    connection.Close();
+                    ok = true;
+                    #endregion
+                }
+            }
+            catch(Exception ex)
+            {
+                string msg = ex.Message;
+                ok= false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return ok;
         }
         #endregion
     }

@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Organizese</RootNamespace>
     <AssemblyName>Organizese</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,6 +43,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=18.1.1.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
@@ -88,9 +91,8 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.13\lib\net452\MySql.Data.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.12\lib\net45\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -102,6 +104,7 @@
     </Reference>
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Net.Http" />
@@ -120,8 +123,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
@@ -135,13 +136,13 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
@@ -153,7 +154,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="src\adminControl\Agenda.aspx" />
     <Content Include="src\adminControl\Chat.aspx" />
+    <Content Include="src\adminControl\Home.aspx" />
     <Content Include="src\blog.aspx" />
     <Content Include="src\bootstrap-wysiwyg.js" />
     <Content Include="src\bootstrap\css\.DS_Store" />
@@ -210,16 +213,11 @@
     <Content Include="src\img\fundoSobre.jpg" />
     <Content Include="src\img\homeOffice.jpg" />
     <Content Include="src\img\homeTable.jpg" />
-    <Content Include="src\img\icons\corporativo.png" />
-    <Content Include="src\img\icons\crescimento.png" />
-    <Content Include="src\img\icons\estudo.png" />
-    <Content Include="src\img\icons\finan.png" />
     <Content Include="src\img\icons\grupo.png" />
     <Content Include="src\img\icons\icon_calc.png" />
     <Content Include="src\img\icons\icon_desenv.png" />
     <Content Include="src\img\icons\icon_education.png" />
     <Content Include="src\img\icons\icon_foco.png" />
-    <Content Include="src\img\icons\notebook.png" />
     <Content Include="src\img\produtos\EstabilidadeFinanceira.jpg" />
     <Content Include="src\lib\animate\animate.css" />
     <Content Include="src\lib\animate\animate.min.css" />
@@ -260,7 +258,6 @@
     <Content Include="src\lib\ionicons\fonts\ionicons.ttf" />
     <Content Include="src\lib\ionicons\fonts\ionicons.woff" />
     <Content Include="src\adminControl\MasterAdmin.Master" />
-    <Content Include="src\adminControl\Calendar.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -325,12 +322,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\adminControl\Calendar.Master.cs">
-      <DependentUpon>Calendar.Master</DependentUpon>
+    <Compile Include="src\adminControl\Agenda.aspx.cs">
+      <DependentUpon>Agenda.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="src\adminControl\Calendar.Master.designer.cs">
-      <DependentUpon>Calendar.Master</DependentUpon>
+    <Compile Include="src\adminControl\Agenda.aspx.designer.cs">
+      <DependentUpon>Agenda.aspx</DependentUpon>
     </Compile>
     <Compile Include="src\adminControl\Chat.aspx.cs">
       <DependentUpon>Chat.aspx</DependentUpon>
@@ -338,6 +335,13 @@
     </Compile>
     <Compile Include="src\adminControl\Chat.aspx.designer.cs">
       <DependentUpon>Chat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\adminControl\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="src\adminControl\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="src\adminControl\MasterAdmin.Master.cs">
       <DependentUpon>MasterAdmin.Master</DependentUpon>
@@ -452,6 +456,7 @@
     <Compile Include="src\website\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="src\website\Login.cs" />
     <Compile Include="src\website\WebSite.Master.cs">
       <DependentUpon>WebSite.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

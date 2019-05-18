@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Organizese.src.adminControl
 {
-    public partial class Calendar : System.Web.UI.MasterPage
+    public partial class Home : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrEmpty(website.Login.id)) { Response.Redirect("http://www.organizeseop.com.br"); }
         }
     }
 }

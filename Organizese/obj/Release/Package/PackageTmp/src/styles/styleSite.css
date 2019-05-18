@@ -1,0 +1,712 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+.links {
+    width: 100vw;
+    height: 50px;
+    position: fixed;
+    display: flex;
+    z-index: 2;
+}
+
+    .links label {
+        padding: 10px;
+        flex-grow: 1;
+        cursor: pointer;
+        transition: all .4s;
+        text-align: center;
+        font-family: Arial;
+        font-size: 100%;
+        color: #fff;
+    }
+
+        .links label:hover {
+            background-color: rgba(255,255,255,.2);
+        }
+
+    .links a {
+        padding: 10px;
+        flex-grow: 1;
+        cursor: pointer;
+        transition: all .4s;
+        text-align: center;
+        text-decoration: none;
+        font-family: Arial;
+        font-size: 100%;
+        color: #fff;
+    }
+
+        .links a:hover {
+            background-color: rgba(255,255,255,.2);
+        }
+
+.progress {
+    padding-top: 50px;
+    width: 100vw;
+    height: 10px;
+    position: fixed;
+    display: flex;
+}
+
+.sectionTitle {
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+    background: linear-gradient( 45deg, rgba(126, 188, 230, 0.1), rgba(28, 131, 200, 0.3) );
+}
+
+.divProgress {
+    height: 3px;
+    background-color: lime;
+}
+
+
+.bloco {
+    width: 100vw;
+    height: 100vh;
+    /*justify-content: center;*/
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#stHome {
+    padding-top: 60px;
+    /*background-color: #0094ff;*/
+    width: 100vw;
+    height: 100vh;
+    background:
+    /*linear-gradient(
+      45deg,
+      rgba(126, 188, 230, 0.8),
+      rgba(28, 131, 200, 0.8)
+    ),*/
+    url("../img/homeTable.jpg") center top no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+#stSobre {
+    padding-top: 60px;
+    /*background-color: #0094ff;*/
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient( 45deg, rgba(126, 188, 230, 0.8), rgba(28, 131, 200, 0.8) ), url("../img/fundoSobre.jpg") center top no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    filter: blur;
+}
+
+#stLoja {
+    padding-top: 50px;
+    background-color: teal;
+    z-index: 1;
+    position: relative;
+}
+
+#stBlog {
+    padding-top: 60px;
+    background-color: #00BFFF;
+    position: relative;
+    z-index: 1;
+}
+
+#stPlanos {
+    padding-top: 50px;
+    background-color: #7FFFD4;
+    position: relative;
+    z-index: 1;
+    /*#00ff90*/
+}
+
+#stContato {
+    z-index: 1;
+    position: relative;
+    background-color: #999;
+}
+
+.scroll {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.sections {
+    transition: all .4s;
+}
+
+.groupIcons {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 100px;
+    text-align: center;
+}
+
+.iconHome {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 23%;
+}
+
+.imgIcon {
+    width: 100%;
+    height: auto;
+}
+
+.subTitle {
+    font-family: Calibri;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    background: linear-gradient( 45deg, rgba(126, 188, 230, 0.8), rgba(28, 131, 200, 0.8) );
+}
+/*Loja*/
+.divLoja {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.divLivroLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+    height: 70vh;
+}
+
+.divLivroRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+    height: 70vh;
+    margin-right: 15vw;
+    margin-left: 5vw;
+}
+
+.imgLoja {
+    width: 20vw;
+    height: 55vh;
+    box-shadow: 0 17px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+}
+
+.divTitleBook {
+    width: 30vw;
+    height: 15vh;
+    text-align: center;
+}
+
+.titleProd {
+    font-size: 18px;
+    font-family: Arial;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+}
+
+
+/*Blog*/
+.blogPosts {
+    display: flex;
+    flex-direction: row;
+}
+
+.listBlog {
+    width: 31.7%;
+    height: 80%;
+    margin: 7px 7px 7px 7px;
+}
+
+.imgBlog {
+    width: 100%;
+    height: 40vh;
+    border-radius: 7px;
+    box-shadow: 0 17px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+}
+
+.divCategoria {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-bottom: 10px;
+}
+
+.divSubCategoria {
+    background-color: #c1c1c1;
+    border-radius: 5px;
+    background: linear-gradient( 45deg, rgba(200,200,200, 0.5), rgba(50,50,50, 0.3) );
+}
+
+.categoria {
+    font-family: Arial;
+    font-size: 20px;
+    margin: 10px 10px 10px 10px;
+}
+
+.titlePost {
+    font-family: Arial;
+    font-size: 20px;
+    text-align: justify;
+    color: black;
+}
+
+/*Planos*/
+.sectionTitlePlan {
+    font-family: Arial;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.titlePlanos {
+    text-align: center;
+    height: 17vh;
+}
+
+
+.groupPlan {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100vw;
+    height: 70vh;
+}
+
+.planType1 {
+    width: 23vw;
+    height: 60vh;
+    background-color: #ADD8E6;
+    margin-left: 8.5vw;
+    margin-right: 3vw;
+    box-shadow: 0 17px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+}
+
+.planType2 {
+    width: 25vw;
+    height: 70vh;
+    background-color: #ADD8E6;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    box-shadow: 0 15px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+}
+
+.planType3 {
+    width: 23vw;
+    height: 60vh;
+    background-color: #ADD8E6;
+    margin-left: 3vw;
+    box-shadow: 0 17px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+}
+
+.titleTipoPlano {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: Arial;
+    font-size: 18px;
+    background-color: #0000ff;
+    padding-top: 10px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.paragrafo {
+    height: 35vh;
+    padding-left: 15px;
+    padding-top: 25px;
+    padding-right: 10px;
+    font-size: 1.6vw;
+}
+
+.preco {
+    padding-top: 3vh;
+    text-align: center;
+    color: forestgreen;
+    font-size: 2vw;
+    font-family: Arial;
+    text-decoration: double;
+}
+
+.iconPlan {
+    color: forestgreen;
+    font-size: 18px;
+}
+
+.subtitlePlan {
+    text-align: center;
+    font-family: Verdana;
+    font-size: 2vh;
+    color: dimgray;
+}
+
+.divPlano {
+    width: 100%;
+    height: 85%;
+}
+
+.btnPlano {
+    font-weight: bold;
+    margin-top: 1.5vh;
+    width: 14vw;
+    height: 7vh;
+    background-color: #008CBA;
+    margin-left: 20%;
+    border-radius: 3px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: none;
+    color: white;
+    font-size: 1.7vw;
+}
+
+    .btnPlano:hover {
+        background-color: #E5FFFF;
+        color: #000;
+        border: groove;
+        border-color: #008CBA;
+        cursor: pointer;
+    }
+
+/*Sobre*/
+.about {
+    display: flex;
+    flex-direction: row;
+}
+
+.sectionTitleSobre {
+    color: #fff;
+    font-family: Arial;
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.aboutLeft {
+    width: 50vw;
+    height: 70vh;
+}
+
+.aboutRight {
+    width: 50vw;
+    height: 70vh;
+    font-family: Arial;
+    padding-right: 5px;
+    color: #fff;
+    font-size: 100%;
+    max-height: 70vh;
+}
+
+.imgAbout {
+    width: 70%;
+    height: auto;
+    max-height: 70vh;
+}
+
+.login {
+    display: none;
+    position: fixed;
+    align-items:center;
+    z-index: 5;
+    width: 13vw;
+    height: 100px;
+    position: fixed;
+    margin-top: 60px;
+    margin-left: 85vw;
+    border-radius: 10px;
+}
+
+.txtLogin {
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border:none;
+    border-radius:3px;
+    width: 11vw;
+}
+.btnEntrar{
+    width: 5vw;
+    margin-left: 4vw;
+    margin-top: 5px;
+    border:none;
+    border-radius:5px;
+    background-color:rgba(126, 188, 230, 0.7);
+    cursor:pointer;
+}
+
+/*Contato*/
+
+.titleContato {
+    /*margin-top: 3vh;*/
+    padding-left: 2vw;
+    padding-top: 7vh;
+    width: 100vw;
+    height: 25vh;
+    background-color: rgba(220,220,255,1);
+}
+.divCorpoContato {
+    margin-top: 3vh;
+    width: 100vw;
+    height: 65vh;
+    padding-left: 2vw;
+}
+
+
+/*Mobile/Tela pequena*/
+@media (max-width: 600px) {
+    /*Blog*/
+    #stBlog {
+        height: 245vh;
+    }
+
+    .blogPosts {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .listBlog {
+        width: 80%;
+        height: 30%;
+    }
+
+    .groupIcons {
+        width: 100%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 0px;
+        text-align: center;
+        align-items: flex-end;
+    }
+
+    .subTitle {
+        font-size: 100%;
+    }
+
+    /*Sobre*/
+    .about {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aboutLeft {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 0vh;
+        z-index: 1;
+    }
+
+    .imgAbout {
+        width: 100%;
+        z-index: 2;
+        opacity: 0.5;
+    }
+
+    .aboutRight {
+        width: 100%;
+        height: 50vh;
+        font-size: 75%;
+        z-index: 5;
+    }
+
+    .sectionTitleSobre {
+        font-size: 200%;
+        height: 1vh;
+        padding-bottom: 30px;
+    }
+    /*Loja*/
+    #stLoja {
+        height: 150vh;
+    }
+
+    .divLoja {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .divLivroLeft {
+        display: flex;
+        flex-direction: row;
+        width: 70vw;
+        height: 50vh;
+        margin: 0;
+    }
+
+    .divLivroRight {
+        display: flex;
+        flex-direction: row;
+        width: 70vw;
+        height: 50vh;
+        margin: 0;
+        margin-top: 10vh;
+    }
+
+    .titleProd {
+        font-size: 16px;
+        width: 35%;
+    }
+
+    .imgLoja {
+        width: 40vw;
+        height: 55vh;
+    }
+
+    .divTitleBook {
+        width: 25vw;
+        height: 15vh;
+        text-align: center;
+    }
+
+    /*Planos*/
+    #stPlanos {
+        height: 250vh;
+    }
+
+    .titlePlanos {
+        text-align: center;
+        height: 35vh;
+    }
+
+    .groupPlan {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        height: 200vh;
+    }
+
+    .planType1 {
+        width: 70vw;
+        height: 60vh;
+        margin: 0;
+        margin-bottom: 4vh;
+        background-color: #ADD8E6;
+        box-shadow: 0 17px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+    }
+
+    .planType2 {
+        width: 70vw;
+        height: 60vh;
+        margin: 0;
+        margin-bottom: 4vh;
+        background-color: #ADD8E6;
+        box-shadow: 0 15px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+    }
+
+    .planType3 {
+        width: 70vw;
+        height: 60vh;
+        margin: 0;
+        background-color: #ADD8E6;
+        box-shadow: 0 17px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+    }
+
+    .paragrafo {
+        height: 35vh;
+        padding-left: 15px;
+        padding-top: 25px;
+        padding-right: 10px;
+        font-size: 3vw;
+    }
+
+    .preco {
+        font-size: 4vw;
+    }
+
+    .btnPlano {
+        font-weight: bold;
+        margin-top: 2.5%;
+        width: 40vw;
+        height: 7vh;
+        background-color: #008CBA;
+        margin-left: 20%;
+        border-radius: 3px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        border: none;
+        color: white;
+        font-size: 3vw;
+    }
+}
+
+/*Cadastro*/
+.cadBody{
+    background-color:rgb(210,255,255);
+}
+.cadTitle{
+    width:100vw;
+    text-align:center;
+    font-size:35px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+.cadDivForm{    
+    display:flex;
+    flex-direction:row;
+}
+
+.cadDivLeft{
+    width:39vw;
+    text-align:right;
+    padding-right:1vw;
+     font-family:Arial;
+     font-size:20px;
+}
+.cadDivRight{
+    width:68vw;
+    text-align:left;
+    padding-left:1vw;
+}
+.cadTxt{
+    width:25vw;
+     font-size:20px;
+     height:33px;
+     padding-left:7px;
+     padding-right:7px;
+    border-radius:5px;
+    border:none;
+     box-shadow: 0 8px 8px 0 rgba(0,0,0,0.15), 0 6px 6px 0 rgba(0,0,0,0.19);
+}
+.cadData{
+     box-shadow: 0 8px 8px 0 rgba(0,0,0,0.15), 0 6px 6px 0 rgba(0,0,0,0.19);
+      width:150px;
+     font-size:20px;
+    border:none;
+    border-radius:5px;
+     height:33px;
+}
+.spaced input[type="radio"]
+{
+   margin-left: 15px; 
+   margin-right: 3px; 
+}
+.cadDivBtn{
+    display:flex;
+    flex-direction:column;
+    width:100vw;
+    align-items:center;
+}

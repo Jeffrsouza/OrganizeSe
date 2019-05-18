@@ -18,6 +18,19 @@ namespace Organizese.src.adminControl
                 DataTable dt = lnk.GetProtocol();
                 gvProtocol.DataSource = dt;
                 gvProtocol.DataBind();
+
+                if (!string.IsNullOrEmpty(website.Atendimento.id))
+                {
+                   DataRow[] dr = dt.Select($"ID={website.Atendimento.id}");
+
+                    lblProtocol.Text = dr[0]["ID"].ToString();
+                    lblNomeClie.Text = dr[0]["NOME_USER"].ToString();
+
+                    rptMsg.DataSource = lnk.GetMsgChat(Convert.ToInt32(website.Atendimento.id));
+                    rptMsg.DataBind();
+
+                    txtMsg.Enabled = true;
+                }
             }
         }
 
@@ -44,13 +57,21 @@ namespace Organizese.src.adminControl
         {
             LinkGeral lnk = new LinkGeral();
             string msg = txtMsg.Text;
-            lnk.gravarMsg(msg);
 
-            DataTable dt = lnk.GetMsgChat(Convert.ToInt32(lblProtocol.Text));
-            rptMsg.DataSource = dt;
+            lnk.gravarMsg(website.Atendimento.id, msg, "A");
+
+            rptMsg.DataSource = lnk.GetMsgChat(Convert.ToInt32(website.Atendimento.id));
             rptMsg.DataBind();
 
             txtMsg.Text = string.Empty;
+        }
+
+        protected void timerChat_Tick(object sender, EventArgs e)
+        {
+            LinkGeral lnk = new LinkGeral();
+            rptMsg.DataSource = lnk.GetMsgChat(Convert.ToInt32(website.Atendimento.id));
+            rptMsg.DataBind();
+            lbl.Text +=" | ";
         }
     }
 }

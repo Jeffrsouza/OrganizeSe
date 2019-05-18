@@ -1,0 +1,130 @@
+﻿body {
+    background: linear-gradient( 45deg, rgba(135,206,250, 0.2), rgba(30,144,255, 0.5) ),
+    /* background: linear-gradient( 45deg, rgba(126, 188, 230, 0.1), rgba(28, 131, 200, 0.3) ),*/
+    url("../img/bkgPrc.jpg") center top no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+/*Client*/
+/*Client*/
+
+
+/*Admin*/
+.nav-btn {
+    padding-top: 5px;
+}
+
+.div-center {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.btn-nav {
+    background-color: #ddd;
+}
+
+.div-grid-protocol {
+    padding-left: 20vw;
+    width: 80vw;
+    height: 15vh;
+    overflow-y: scroll;
+}
+
+.div-chat-details {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+
+.div-chat-left {
+    width: 23vw;
+    height: 65vh;
+    background-color: rgba(0,100,200,.3);
+}
+
+.div-chat-right {
+    width: 23vw;
+    height: 65vh;
+    background-color: rgba(0,100,200,.3);
+}
+
+.div-chat-middle {
+    padding-left: 10px;
+    width: 50vw;
+    height: 65vh;
+    background-color: rgba(0,0,255,.55);
+    border-radius: 5px;
+}
+
+.div-chat-msg {
+    width: 48vw;
+    height: 45vh;
+    overflow-y: scroll;
+    border-color: rgba(100,200,200,.5);
+    border-radius: 5px;
+    border-style: solid;
+}
+
+.div-chat-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 15vh;
+}
+
+.txtMsg {
+    width: 38vw;
+    height: 60px;
+    resize: none;
+    border-radius: 10px;
+    padding-left: 5px;
+    background-color: rgba(169,169,169,.6);
+}
+
+.btnMsg {
+    width: 100px;
+}
+/*Caixa de Msg*/
+.msg-header{
+    font-size:20px;
+    font-weight:bold;
+}
+.msgChatr {
+    text-align: right;
+}
+
+.msgChatl {
+}
+
+.msg-nome {
+    font-weight: bold;
+}
+
+.msg-bodyAdmin {
+    padding: 0px 7px 0px 7px;
+    font-size: 15px;
+    background-color: rgba(225,225,225,.5);
+    border-radius: 5px;
+}
+
+.msg-bodyClient {
+    padding: 0px 7px 0px 7px;
+    font-size: 15px;
+    background-color: rgba(225,225,225,.5);
+    border-radius: 5px;
+}
+
+.msg-data {
+    padding: 0px 3px 0px 3px;
+    color: gray;
+    font-size: 9px;
+    background-color: rgba(180,180,180,.7);
+    border-radius: 5px;
+}
+/*Caixa de Msg*/
+
+/*Admin*/
+

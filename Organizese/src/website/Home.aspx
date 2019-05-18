@@ -1,8 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/src/website/WebSite.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="Organizese.src.website.Home" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManagerHomeSite" runat="server" EnablePageMethods='true'></asp:ScriptManager>
     <div>
         <nav class="progress">
             <div id="divProgress" class="divProgress"></div>
@@ -13,17 +15,17 @@
             <a href="javascript:progress('#stLoja');">Loja</a>
             <a href="javascript:progress('#stBlog');">Blog</a>
             <a href="javascript:progress('#stPlanos');">Planos</a>
-            <a href="javascript:progress('#stContato');">Contato</a>            
-            <a href="javascript:progress('#stJuntos');">Junte-se</a>
-            <a href="javascript:fazerLogin();">Entrar</a>
+            <a href="javascript:progress('#stContato');">Contato</a>
+            <a href="javascript:progress('#stContato');">Junte-se</a>
+            <a href="javascript:abrirLogin();">Entrar</a>
 
         </nav>
         <div class="scroll">
-            <div id="login" class="login">
-            <asp:TextBox ID="txtEmail" runat="server" PlaceHolder=" Login..." class="txtLogin"></asp:TextBox>
-            <asp:TextBox ID="txtSenha" runat="server" PlaceHolder=" Senha..." TextMode="Password" class="txtLogin"></asp:TextBox>
-                <asp:Button ID="btnEntrar" CssClass="btnEntrar" runat="server" Text="Entrar" />
-        </div>
+            <div id="divLogin" class="login" >
+                <asp:TextBox ID="txtEmail" runat="server" PlaceHolder=" Login..." class="txtLogin"></asp:TextBox>
+                <asp:TextBox ID="txtSenha" runat="server" PlaceHolder=" Senha..." TextMode="Password" class="txtLogin"></asp:TextBox>
+                <asp:Button ID="btnEntrar" CssClass="btnEntrar" runat="server" Text="Entrar" AutoPostBack="false" OnClick="btnEntrar_Click" />
+            </div>
 
             <section class="sections">
                 <section class="bloco" id="stHome">
@@ -90,8 +92,8 @@
                     </div>
                 </section>
                 <section class="bloco" id="stLoja">
-                    <p class="sectionTitlePlan">E-books</p>
-                    <div class="divLoja">
+                    <p class="sectionTitlePlan">E-book</p>
+                    <!--<div class="divLoja">-->
                         <div class="divLivroLeft">
                             <img class="imgLoja"
                                 src="../img/produtos/EstabilidadeFinanceira.jpg" />
@@ -99,18 +101,7 @@
                             <a href="https://simplissimo.com.br/onsales/organize-se/?fbclid=IwAR1SRe9qOHxxHUegAdeYKW4U3_e-0HD8Y1RhPGtRNbstKVL3QU8AziZmunI"
                                 class="titleProd">Estabilidade Financeira</a>
                         </div>
-                        &nbsp
-                        &nbsp
-                        <br />
-                        <div class="divLivroRight">
-                            <img class="imgLoja" src="../img/produtos/EstabilidadeFinanceira.jpg" />
-                            &nbsp
-                            <div class="divTitleBook">
-                                <a href="https://pages.hotmart.com/j11237362s/como-estruturar-uma-redacao-acima-da-media-curso-enem-online#about_the_author"
-                                    class="titleProd">Como Estruturar uma Redação Acima da Média</a>
-                            </div>
-                        </div>
-                    </div>
+
                 </section>
                 <section class="bloco" id="stBlog">
                     <p class="sectionTitle">Blog Organize-se</p>
@@ -126,7 +117,7 @@
                                             <span class="categoria" runat="server"><%#Eval("CATEGORIA")%></span>
                                         </div>
                                     </div>
-                                    <a href="index.aspx?id=<%# Eval("ID") %>">
+                                    <a href="http://www.organizeseop.com.br/src/index.aspx?id=<%# Eval("ID") %>">
                                         <asp:Image runat="server" src='<%# "data:image/png;base64,"+ Eval("ARQUIVO") %>' class="imgBlog" /><br />
                                         <br />
                                         <asp:Label runat="server" class="titlePost"><%# Eval("TITULO").ToString().Length > 100 ? (Eval("TITULO").ToString().Substring(0, 100) + "...") : Eval("TITULO") %></asp:Label>
@@ -226,10 +217,98 @@
                             </div>
                             <input type="button" class="btnPlano" value="Contrate Agora!" />
                         </div>
-                    </div>               
+                    </div>
                 </section>
-                <section class="bloco" id="stJuntos"></section>
-                <section class="bloco" id="stContato"></section>
+                <section class="bloco" id="stContato">
+                    <div class="titleContato">
+                        <h1>Entre em contato conosco</h1>
+                    </div>
+                    <div class="divCorpoContato">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="well well-sm">
+                                   <!-- <form>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">
+                                                        Nome</label>
+                                                    <input type="text" class="form-control" id="nome" placeholder="Nome..."  />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">
+                                                        E-mail</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">@</span>
+                                                        </div>
+                                                        <input type="email" class="form-control" id="email" placeholder="E-mail..."  />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="wpp">
+                                                        Whatsapp</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="wpp"><i style="font-size: 20px; color: green" class="fa">&#xf232;</i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="numwpp" placeholder="Whatsapp..."  />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">
+                                                        Mensagem</label>
+                                                    <textarea name="message" id="message" class="form-control" rows="9" cols="25" maxlength="500"
+                                                        placeholder="Menssagem (até 500 caractéres)"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                                                    Enviar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <form>
+                                    <legend><span class="glyphicon glyphicon-globe"></span></legend>
+                                    <address>
+                                        <br />
+                                        <strong>Organize-se</strong><br />
+                                        <br />
+                                        <br />
+                                        <br />
+
+                                        <!--
+                                        <br />
+                                        Rodrigo A. Sparma:  
+                                <br />
+                                        <a href="https://api.whatsapp.com/send?phone=5519992604818&text=GinásticaLaboral:">
+                                            <i style="font-size: 24px; color: green" class="fa">&#xf232;</i>&nbsp&nbsp(19) 99260-4818
+                                        </a>
+                                        <br />
+                                        <br />
+                                        Melissa Brazuna:
+                                <br />
+                                        <a href="https://api.whatsapp.com/send?phone=55199991928219&text=GinásticaLaboral:">
+                                            <i style="font-size: 24px; color: green" class="fa">&#xf232;</i>&nbsp&nbsp(19) 99192-8219
+                                        </a>
+                                    </address>
+                                        <address>
+                                            <strong>E-mail: </strong>
+                                            <br>
+                                            <a href="mailto:#">organizeestrategias@gmail.com</a>
+                                        </address>
+                                </form>-->
+                            </div>
+                        </div>
+                    </div>
+
+
+                </section>
 
             </section>
         </div>
@@ -269,8 +348,8 @@
                 window.open('https://pag.ae/7UGTWDhBa', '_blank');
             }
 
-            function fazerLogin() {
-                document.getElementById("login").style.display= document.getElementById("login").style.display == 'block'? 'none':'block';
+            function abrirLogin() {
+                document.getElementById("divLogin").style.display = document.getElementById("divLogin").style.display == 'block' ? 'none' : 'block';
             }
 
         </script>
